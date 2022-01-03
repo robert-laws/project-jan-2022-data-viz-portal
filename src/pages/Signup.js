@@ -5,7 +5,7 @@ import { useSignup } from '../hooks/useSignup';
 import { studentClasses, studentMajors } from '../data';
 
 export const Signup = () => {
-  const { signupUser, error, isPending } = useSignup();
+  const { signupUser, signupError, isSignupPending } = useSignup();
 
   const [signup, setSignup] = useState({
     email: '',
@@ -152,11 +152,11 @@ export const Signup = () => {
           </div>
         </div>
         <div className='form-submit'>
-          <Button isLoading={isPending} styleClass='secondary'>
+          <Button isLoading={isSignupPending} styleClass='secondary'>
             Signup
           </Button>
           {formError && <span className='error-text'>{formError}</span>}
-          {error && <span className='error-text'>{error}</span>}
+          {signupError && <span className='error-text'>{signupError}</span>}
         </div>
       </form>
     </section>

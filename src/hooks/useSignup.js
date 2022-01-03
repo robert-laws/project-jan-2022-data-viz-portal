@@ -6,8 +6,8 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 export const useSignup = () => {
   const [isCancelled, setIsCancelled] = useState(false);
-  const [error, setError] = useState(null);
-  const [isPending, setIsPending] = useState(false);
+  const [signupError, setSignupError] = useState(null);
+  const [isSignupPending, setIsSignupPending] = useState(false);
 
   const { user } = useAuthContext();
 
@@ -17,8 +17,8 @@ export const useSignup = () => {
   const db = getFirestore();
 
   const signupUser = async (signupObject) => {
-    setError(null);
-    setIsPending(true);
+    setSignupError(null);
+    setIsSignupPending(true);
 
     const {
       email,
@@ -41,8 +41,8 @@ export const useSignup = () => {
         throw new Error('User not created');
       } else {
         if (!isCancelled) {
-          setError(null);
-          setIsPending(false);
+          setSignupError(null);
+          setIsSignupPending(false);
         }
 
         const userUid = credential.user.uid;
@@ -57,20 +57,20 @@ export const useSignup = () => {
           });
 
           if (!isCancelled) {
-            setError(null);
-            setIsPending(false);
+            setSignupError(null);
+            setIsSignupPending(false);
           }
         } catch (err) {
           if (!isCancelled) {
-            setError(err.message);
-            setIsPending(false);
+            setSignupError(err.message);
+            setIsSignupPending(false);
           }
         }
       }
     } catch (err) {
       if (!isCancelled) {
-        setError(err.message);
-        setIsPending(false);
+        setSignupError(err.message);
+        setIsSignupPending(false);
       }
     }
   };
@@ -87,5 +87,5 @@ export const useSignup = () => {
     }
   }, [user, navigate]);
 
-  return { signupUser, error, isPending };
+  return { signupUser, signupError, isSignupPending };
 };

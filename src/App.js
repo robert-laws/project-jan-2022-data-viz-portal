@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Navigation } from './components';
 import {
   Home,
   KnowledgeBase,
@@ -14,7 +15,7 @@ function App() {
   return (
     <div className='app'>
       <Router>
-        <h1>Data Viz Portal</h1>
+        <Navigation />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/profile' element={<Profile />} />
