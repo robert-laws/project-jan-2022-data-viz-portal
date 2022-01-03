@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import Select from 'react-select';
 import { Button } from '../components';
+import { useSignup } from '../hooks/useSignup';
 import { studentClasses, studentMajors } from '../data';
 
 export const Signup = () => {
+  const { signupUser, error, isPending } = useSignup();
+
   const [signup, setSignup] = useState({
     email: '',
     password: '',
@@ -15,8 +18,6 @@ export const Signup = () => {
   });
   const [formError, setFormError] = useState(null);
 
-  const [loading, setLoading] = useState(false);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSignup({ ...signup, [name]: value });
@@ -24,11 +25,24 @@ export const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit event');
-  };
+    setFormError(null);
 
-  const handleClick = () => {
-    setLoading((prev) => !prev);
+    if (!signup.studentClass) {
+      setFormError('Please select a class');
+      return;
+    }
+
+    if (!signup.studentMajor) {
+      setFormError('Please select a major');
+      return;
+    }
+
+    if (!signup.meetingDay) {
+      setFormError('Please select a meeting day');
+      return;
+    }
+
+    signupUser(signup);
   };
 
   return (
@@ -138,13 +152,11 @@ export const Signup = () => {
           </div>
         </div>
         <div className='form-submit'>
-          <Button
-            isLoading={loading}
-            onClick={handleClick}
-            styleClass='secondary'
-          >
+          <Button isLoading={isPending} styleClass='secondary'>
             Signup
           </Button>
+          {formError && <span className='error-text'>{formError}</span>}
+          {error && <span className='error-text'>{error}</span>}
         </div>
       </form>
     </section>

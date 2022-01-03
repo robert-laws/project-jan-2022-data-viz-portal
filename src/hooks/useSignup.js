@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
-// import { useAuthContext } from '../hooks/useAuthContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 export const useSignup = () => {
   const [isCancelled, setIsCancelled] = useState(false);
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
 
-  // const { user } = useAuthContext();
+  const { user } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -81,11 +81,11 @@ export const useSignup = () => {
     };
   });
 
-  // useEffect(() => {
-  //   if (user) {
-  //     navigate('/profile');
-  //   }
-  // }, [user, navigate]);
+  useEffect(() => {
+    if (user) {
+      navigate('/profile');
+    }
+  }, [user, navigate]);
 
   return { signupUser, error, isPending };
 };
