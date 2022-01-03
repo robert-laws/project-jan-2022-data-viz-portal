@@ -4,11 +4,14 @@ import './sass/main.scss';
 import './firebase/config';
 import App from './App';
 import AuthState from './context/auth/AuthState';
+import UserState from './context/user/UserState';
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthState>
-      <App />
+      <UserState>
+        <App />
+      </UserState>
     </AuthState>
   </React.StrictMode>,
   document.getElementById('root')

@@ -47,6 +47,7 @@ export const useCollection = (col, _myQuery = null, _myOrder = null) => {
             });
           });
           setDocuments(allDocs);
+          setError(null);
           setIsCollectionLoading(false);
         }
       },

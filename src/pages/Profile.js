@@ -1,28 +1,20 @@
-import { useEffect } from 'react';
-import { useDocument } from '../hooks/useDocument';
-import { useAuthContext } from '../hooks/useAuthContext';
+// import { useEffect } from 'react';
+// import { useDocument } from '../hooks/useDocument';
+import { useCheckUser } from '../hooks/useCheckUser';
 
 export const Profile = () => {
-  const { user } = useAuthContext();
-  const { getDocument, document, documentError, isDocumentLoading } =
-    useDocument();
-
-  useEffect(() => {
-    if (user) {
-      getDocument('users', user.uid);
-    }
-  }, [user, getDocument]);
+  const { profile, isProfileLoading, profileError } = useCheckUser();
 
   return (
     <div>
-      {isDocumentLoading && !documentError ? (
+      {isProfileLoading && !profileError ? (
         <p>Loading...</p>
       ) : (
         <p>
-          {document.firstName} {document.lastName}
+          {profile.firstName} {profile.lastName}
         </p>
       )}
-      {documentError && <p>{documentError}</p>}
+      {profileError && <p>{profileError}</p>}
     </div>
   );
 };
