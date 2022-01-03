@@ -15,7 +15,7 @@ export const Profile = () => {
 
   return (
     <div>
-      {isDocumentLoading ? (
+      {isDocumentLoading && !documentError ? (
         <p>Loading...</p>
       ) : (
         <p>
