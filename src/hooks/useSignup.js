@@ -26,7 +26,7 @@ export const useSignup = () => {
       firstName,
       lastName,
       studentClass,
-      major,
+      studentMajor,
       meetingDay,
     } = signupObject;
 
@@ -52,7 +52,7 @@ export const useSignup = () => {
             firstName,
             lastName,
             studentClass,
-            major,
+            studentMajor,
             meetingDay,
           });
 
