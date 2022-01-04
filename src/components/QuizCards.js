@@ -1,4 +1,4 @@
-import { QuizCard } from '.';
+import { QuizCard } from './QuizCard';
 import { quizSchedule } from '../data/quizSchedule';
 
 export const QuizCards = ({ completed }) => {
