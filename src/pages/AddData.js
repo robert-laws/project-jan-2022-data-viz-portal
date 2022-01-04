@@ -8,10 +8,12 @@ export const AddData = () => {
   const [status, setStatus] = useState({
     quizzes: false,
     polls: false,
+    questions: false,
   });
 
-  const quizRef = collection(db, 'quizzes');
-  const pollRef = collection(db, 'polls');
+  // const quizRef = collection(db, 'quizzes');
+  // const pollRef = collection(db, 'polls');
+  const questionRef = collection(db, 'questions');
 
   const addToDatabase = async (dataSet, ref, type) => {
     for (const data of dataSet) {
@@ -26,8 +28,9 @@ export const AddData = () => {
   };
 
   const handleClick = () => {
-    addToDatabase(quizData, quizRef, 'quizzes');
-    addToDatabase(pollData, pollRef, 'polls');
+    // addToDatabase(quizData, quizRef, 'quizzes');
+    // addToDatabase(pollData, pollRef, 'polls');
+    addToDatabase([...pollData, ...quizData], questionRef, 'questions');
   };
 
   return (
@@ -36,6 +39,8 @@ export const AddData = () => {
       {status.quizzes ? 'Quizzes added' : 'Quizzes in process...'}
       {<br />}
       {status.polls ? 'Polls added' : 'Polls in process...'}
+      {<br />}
+      {status.questions ? 'Questions added' : 'Questions in process...'}
       {<br />}
       <button onClick={handleClick}>Add Data</button>
     </div>

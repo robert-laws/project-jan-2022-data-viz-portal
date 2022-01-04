@@ -27,7 +27,7 @@ function App() {
             <Route path='/knowledge-base' element={<KnowledgeBase />} />
             <Route path='/poll' element={<Poll />} />
             <Route path='/quiz' element={<Quiz />} />
-            <Route path='/add' element={<AddData />} />
+            {/* <Route path='/add' element={<AddData />} /> */}
             <Route
               path='/login'
               element={
