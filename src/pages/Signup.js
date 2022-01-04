@@ -15,6 +15,8 @@ export const Signup = () => {
     studentClass: '',
     studentMajor: '',
     meetingDay: '',
+    completedQuizzes: [false, false, false, false, false],
+    completedPolls: [false, false, false, false, false],
   });
   const [formError, setFormError] = useState(null);
 

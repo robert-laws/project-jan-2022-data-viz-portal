@@ -1,6 +1,6 @@
 import { useReducer, useCallback } from 'react';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { LOAD_PROFILE, PROFILE_ERROR } from '../types';
+import { LOAD_PROFILE, PROFILE_ERROR, CLEAR_PROFILE } from '../types';
 import UserContext from './userContext';
 import userReducer from './userReducer';
 
@@ -33,6 +33,10 @@ const UserState = ({ children }) => {
     [dispatch]
   );
 
+  const clearProfile = () => {
+    dispatch({ type: CLEAR_PROFILE });
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -40,6 +44,7 @@ const UserState = ({ children }) => {
         isProfileLoading: state.isProfileLoading,
         profileError: state.profileError,
         loadProfile,
+        clearProfile,
       }}
     >
       {children}

@@ -4,6 +4,7 @@ export const UPDATE_AUTH = 'UPDATE_AUTH';
 // USER
 export const LOAD_PROFILE = 'LOAD_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
+export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 
 // QUESTIONS
 export const LOAD_QUESTIONS = 'LOAD_QUESTIONS';
