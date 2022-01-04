@@ -6,3 +6,6 @@ export { Poll } from './Poll';
 export { Profile } from './Profile';
 export { Quiz } from './Quiz';
 export { Signup } from './Signup';
+
+// utility to add data to firestore
+export { AddData } from './AddData';
