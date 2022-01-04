@@ -5,7 +5,7 @@ import { useQuestionContext } from '../hooks/useQuestionContext';
 import { QuizCards, QuizQuestionList } from '../components';
 
 export const Quiz = () => {
-  const { user } = useCheckUser();
+  const { user, profile } = useCheckUser();
   const { questions, isQuestionsLoading, questionsError, loadQuestions } =
     useQuestionContext();
 
@@ -23,8 +23,10 @@ export const Quiz = () => {
   }, [user, questions, loadQuestions]);
 
   useEffect(() => {
-    setCompletedList([true, false, false, false, false]);
-  }, []);
+    if (profile) {
+      setCompletedList(profile.quiz);
+    }
+  }, [profile]);
 
   useEffect(() => {
     if (questions && weekNumber) {
@@ -44,7 +46,8 @@ export const Quiz = () => {
         <QuizQuestionList
           weekNumber={weekNumber}
           questions={quizQuestions}
-          userId={user.id}
+          userId={user.uid}
+          profile={profile}
         />
       ) : (
         <QuizCards completed={completedList} />

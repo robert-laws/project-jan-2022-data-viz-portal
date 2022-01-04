@@ -1,6 +1,11 @@
 import { useReducer, useCallback } from 'react';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
-import { LOAD_QUESTIONS, QUESTIONS_ERROR } from '../types';
+import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
+import {
+  LOAD_QUESTIONS,
+  QUESTIONS_ERROR,
+  SAVING_COMPLETE,
+  SAVING_ERROR,
+} from '../types';
 import QuestionContext from './questionContext';
 import questionReducer from './questionReducer';
 
@@ -11,6 +16,7 @@ const QuestionState = ({ children }) => {
     questions: null,
     isQuestionsLoading: true,
     questionsError: null,
+    isSaving: true,
   };
 
   const [state, dispatch] = useReducer(questionReducer, initialState);
@@ -38,13 +44,34 @@ const QuestionState = ({ children }) => {
     }
   }, [dispatch]);
 
+  const saveResults = useCallback(
+    async (answers) => {
+      const colRef = collection(db, 'results');
+
+      try {
+        for (let i = 0; i < answers.length; i++) {
+          await addDoc(colRef, answers[i]);
+        }
+        dispatch({ type: SAVING_COMPLETE });
+      } catch (error) {
+        dispatch({
+          type: SAVING_ERROR,
+          payload: `Could not add the documents because: ${error.message}`,
+        });
+      }
+    },
+    [dispatch]
+  );
+
   return (
     <QuestionContext.Provider
       value={{
         questions: state.questions,
         isQuestionsLoading: state.isQuestionsLoading,
         questionsError: state.questionsError,
+        isSaving: state.isSaving,
         loadQuestions,
+        saveResults,
       }}
     >
       {children}

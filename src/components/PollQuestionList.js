@@ -1,8 +1,18 @@
 import { useState, useCallback } from 'react';
 import { PollQuestion } from './PollQuestion';
+import { useQuestionContext } from '../hooks/useQuestionContext';
+import { useUserContext } from '../hooks/useUserContext';
 
-export const PollQuestionList = ({ weekNumber, questions, userId }) => {
+export const PollQuestionList = ({
+  weekNumber,
+  questions,
+  userId,
+  profile,
+}) => {
   const [pollAnswers, setPollAnswers] = useState([]);
+
+  const { saveResults } = useQuestionContext();
+  const { updateUserCompletedList } = useUserContext();
 
   const handleAnswer = useCallback(
     (answer) => {
@@ -12,9 +22,9 @@ export const PollQuestionList = ({ weekNumber, questions, userId }) => {
           (a) => a.questionNumber === answer.questionNumber
         );
         if (answerIndex === -1) {
-          updatedAnswers.push({ ...answer, userId });
+          updatedAnswers.push({ ...answer, userId: userId });
         } else {
-          updatedAnswers[answerIndex] = { ...answer, userId };
+          updatedAnswers[answerIndex] = { ...answer, userId: userId };
         }
         return updatedAnswers;
       });
@@ -24,7 +34,13 @@ export const PollQuestionList = ({ weekNumber, questions, userId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(pollAnswers);
+
+    let pollCompletedList = profile.poll;
+    const completedIndex = weekNumber - 1;
+    pollCompletedList.splice(completedIndex, 1, true);
+
+    saveResults(pollAnswers);
+    updateUserCompletedList('poll', userId, pollCompletedList);
   };
 
   if (!questions) {

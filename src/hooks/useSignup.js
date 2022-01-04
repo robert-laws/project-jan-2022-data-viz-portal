@@ -28,8 +28,8 @@ export const useSignup = () => {
       studentClass,
       studentMajor,
       meetingDay,
-      completedQuizzes,
-      completedPolls,
+      quiz,
+      poll,
     } = signupObject;
 
     try {
@@ -56,8 +56,8 @@ export const useSignup = () => {
             studentClass,
             studentMajor,
             meetingDay,
-            completedQuizzes,
-            completedPolls,
+            quiz,
+            poll,
           });
 
           if (!isCancelled) {

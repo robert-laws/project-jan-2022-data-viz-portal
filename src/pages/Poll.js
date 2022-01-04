@@ -5,7 +5,7 @@ import { useQuestionContext } from '../hooks/useQuestionContext';
 import { PollCards, PollQuestionList } from '../components';
 
 export const Poll = () => {
-  const { user } = useCheckUser();
+  const { user, profile } = useCheckUser();
   const { questions, isQuestionsLoading, questionsError, loadQuestions } =
     useQuestionContext();
 
@@ -23,8 +23,10 @@ export const Poll = () => {
   }, [user, questions, loadQuestions]);
 
   useEffect(() => {
-    setCompletedList([true, false, false, false, false]);
-  }, []);
+    if (profile) {
+      setCompletedList(profile.poll);
+    }
+  }, [profile]);
 
   useEffect(() => {
     if (questions && weekNumber) {
@@ -44,7 +46,8 @@ export const Poll = () => {
         <PollQuestionList
           weekNumber={weekNumber}
           questions={pollQuestions}
-          userId={user.id}
+          userId={user.uid}
+          profile={profile}
         />
       ) : (
         <PollCards completed={completedList} />

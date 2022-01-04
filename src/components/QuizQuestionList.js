@@ -1,8 +1,18 @@
 import { useState, useCallback } from 'react';
 import { QuizQuestion } from './QuizQuestion';
+import { useQuestionContext } from '../hooks/useQuestionContext';
+import { useUserContext } from '../hooks/useUserContext';
 
-export const QuizQuestionList = ({ weekNumber, questions, userId }) => {
+export const QuizQuestionList = ({
+  weekNumber,
+  questions,
+  userId,
+  profile,
+}) => {
   const [quizAnswers, setQuizAnswers] = useState([]);
+
+  const { saveResults } = useQuestionContext();
+  const { updateUserCompletedList } = useUserContext();
 
   const handleAnswer = useCallback(
     (answer) => {
@@ -12,9 +22,9 @@ export const QuizQuestionList = ({ weekNumber, questions, userId }) => {
           (a) => a.questionNumber === answer.questionNumber
         );
         if (answerIndex === -1) {
-          updatedAnswers.push({ ...answer, userId });
+          updatedAnswers.push({ ...answer, userId: userId });
         } else {
-          updatedAnswers[answerIndex] = { ...answer, userId };
+          updatedAnswers[answerIndex] = { ...answer, userId: userId };
         }
         return updatedAnswers;
       });
@@ -24,7 +34,13 @@ export const QuizQuestionList = ({ weekNumber, questions, userId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(quizAnswers);
+
+    let quizCompletedList = profile.quiz;
+    const completedIndex = weekNumber - 1;
+    quizCompletedList.splice(completedIndex, 1, true);
+
+    saveResults(quizAnswers);
+    updateUserCompletedList('quiz', userId, quizCompletedList);
   };
 
   if (!questions) {

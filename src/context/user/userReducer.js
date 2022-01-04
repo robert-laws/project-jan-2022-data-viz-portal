@@ -1,4 +1,9 @@
-import { CLEAR_PROFILE, LOAD_PROFILE, PROFILE_ERROR } from '../types';
+import {
+  CLEAR_PROFILE,
+  LOAD_PROFILE,
+  PROFILE_ERROR,
+  UPDATE_PROFILE,
+} from '../types';
 
 const userReducer = (state, action) => {
   switch (action.type) {
@@ -21,6 +26,16 @@ const userReducer = (state, action) => {
       return {
         profile: null,
         isProfileLoading: true,
+        profileError: null,
+      };
+
+    case UPDATE_PROFILE:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          ...action.payload,
+        },
         profileError: null,
       };
 

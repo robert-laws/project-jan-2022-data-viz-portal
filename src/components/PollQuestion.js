@@ -11,6 +11,7 @@ export const PollQuestion = ({
   const [answer, setAnswer] = useState({
     questionNumber: '',
     weekNumber: '',
+    category: 'poll',
     answer: '',
   });
 
@@ -25,6 +26,7 @@ export const PollQuestion = ({
       ...prevState,
       weekNumber,
       questionNumber,
+      category: 'poll',
       answer: choice,
     }));
   };

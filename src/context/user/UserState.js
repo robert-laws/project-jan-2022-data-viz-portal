@@ -1,6 +1,11 @@
 import { useReducer, useCallback } from 'react';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { LOAD_PROFILE, PROFILE_ERROR, CLEAR_PROFILE } from '../types';
+import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
+import {
+  LOAD_PROFILE,
+  PROFILE_ERROR,
+  CLEAR_PROFILE,
+  UPDATE_PROFILE,
+} from '../types';
 import UserContext from './userContext';
 import userReducer from './userReducer';
 
@@ -33,6 +38,25 @@ const UserState = ({ children }) => {
     [dispatch]
   );
 
+  const updateUserCompletedList = useCallback(
+    async (category, userId, completedList) => {
+      const userRef = doc(db, 'users', userId);
+      const data = { [category]: completedList };
+
+      try {
+        await updateDoc(userRef, data);
+
+        dispatch({
+          type: UPDATE_PROFILE,
+          payload: data,
+        });
+      } catch (error) {
+        dispatch({ type: PROFILE_ERROR, payload: error.message });
+      }
+    },
+    [dispatch]
+  );
+
   const clearProfile = () => {
     dispatch({ type: CLEAR_PROFILE });
   };
@@ -45,6 +69,7 @@ const UserState = ({ children }) => {
         profileError: state.profileError,
         loadProfile,
         clearProfile,
+        updateUserCompletedList,
       }}
     >
       {children}

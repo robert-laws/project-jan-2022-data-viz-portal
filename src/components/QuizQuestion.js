@@ -12,6 +12,7 @@ export const QuizQuestion = ({
   const [answer, setAnswer] = useState({
     questionNumber: '',
     weekNumber: '',
+    category: 'quiz',
     answer: '',
     correct: false,
   });
@@ -28,6 +29,7 @@ export const QuizQuestion = ({
     setAnswer((prevState) => ({
       ...prevState,
       weekNumber,
+      category: 'quiz',
       questionNumber,
       answer: choice,
       correct: checkAnswer,
@@ -63,31 +65,6 @@ export const QuizQuestion = ({
           ))}
         </div>
       </label>
-      {/* 
-      <label className='radio-group'>
-        <span>{questionText}</span>
-        <div className='radio-buttons'>
-          {questionAnswers.map((choice) => (
-            <label key={choice} className='radio'>
-              <input
-                type='radio'
-                name={`question${questionNumber.toString()}`}
-                value={choice}
-                className='form-check-input'
-                onChange={() =>
-                  handleChange(
-                    weekNumber,
-                    questionNumber.toString(),
-                    choice,
-                    correctAnswer
-                  )
-                }
-              />
-              <span>{choice}</span>
-            </label>
-          ))}
-        </div>
-      </label> */}
     </div>
   );
 };

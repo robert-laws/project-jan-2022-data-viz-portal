@@ -1,4 +1,9 @@
-import { LOAD_QUESTIONS, QUESTIONS_ERROR } from '../types';
+import {
+  LOAD_QUESTIONS,
+  QUESTIONS_ERROR,
+  SAVING_ERROR,
+  SAVING_COMPLETE,
+} from '../types';
 
 const questionReducer = (state, action) => {
   switch (action.type) {
@@ -11,6 +16,20 @@ const questionReducer = (state, action) => {
       };
 
     case QUESTIONS_ERROR:
+      return {
+        ...state,
+        questionsError: action.payload,
+        isQuestionsLoading: false,
+        isSaving: true,
+      };
+
+    case SAVING_COMPLETE:
+      return {
+        ...state,
+        isSaving: false,
+      };
+
+    case SAVING_ERROR:
       return {
         ...state,
         questionsError: action.payload,
