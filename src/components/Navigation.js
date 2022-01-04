@@ -21,6 +21,8 @@ export const Navigation = () => {
           {!user && <NavLink to='/login'>Login</NavLink>}
           {!user && <NavLink to='/signup'>Signup</NavLink>}
           {user && <NavLink to='/profile'>Profile</NavLink>}
+          {user && <NavLink to='/quiz'>Quizzes</NavLink>}
+          {user && <NavLink to='/poll'>Polls</NavLink>}
           {user && (
             <Button
               isLoading={isLogoutPending}
