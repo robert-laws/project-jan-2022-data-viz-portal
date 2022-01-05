@@ -1,24 +1,31 @@
 import { useState, useEffect } from 'react';
+import { useQuestionContext } from '../hooks/useQuestionContext';
 
-export const useBuildChartArray = (
-  listOfResults,
-  property,
-  xAxisTitle,
-  yAxisTitle
-) => {
+export const useBuildChartArray = (user, property, xAxisTitle, yAxisTitle) => {
+  const { results, isResultsLoading, resultsError } = useQuestionContext();
+  const [resultsList, setResultsList] = useState(null);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (listOfResults.length > 0) {
+    if (results && user) {
+      const userResults = results.filter(
+        (result) => result.userId === user.uid
+      );
+      setResultsList(userResults);
+    }
+  }, [results, user]);
+
+  useEffect(() => {
+    if (resultsList) {
       const chartData = prepareUserQuizzesForVisualization(
         xAxisTitle,
         yAxisTitle,
-        groupResults(getResultsForQuizzes(listOfResults), property)
+        groupResults(getResultsForQuizzes(resultsList), property)
       );
 
       setData(chartData);
     }
-  }, [listOfResults, property, xAxisTitle, yAxisTitle]);
+  }, [resultsList, property, xAxisTitle, yAxisTitle]);
 
   const getResultsForQuizzes = (allResults) => {
     let results = [];
@@ -61,5 +68,5 @@ export const useBuildChartArray = (
     return quizResults;
   };
 
-  return data;
+  return [data, isResultsLoading, resultsError];
 };

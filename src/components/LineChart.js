@@ -1,6 +1,7 @@
+import React from 'react';
 import { Chart } from 'react-google-charts';
 
-export const ColumnChart = ({ title, hAxisTitle, vAxisTitle, chartData }) => {
+export const LineChart = ({ title, hAxisTitle, vAxisTitle, chartData }) => {
   const options = {
     hAxis: {
       title: hAxisTitle,
@@ -11,6 +12,7 @@ export const ColumnChart = ({ title, hAxisTitle, vAxisTitle, chartData }) => {
       minValue: 0,
       ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
+    curveType: 'function',
     legend: { position: 'bottom' },
   };
 
@@ -26,7 +28,7 @@ export const ColumnChart = ({ title, hAxisTitle, vAxisTitle, chartData }) => {
     <div className='chart'>
       <h3>{title}</h3>
       <Chart
-        chartType='ColumnChart'
+        chartType='LineChart'
         width='100%'
         height='400px'
         data={chartData}

@@ -5,6 +5,8 @@ import {
   RESULTS_ERROR,
   SAVING_ERROR,
   SAVING_COMPLETE,
+  CLEAR_QUESTIONS,
+  CLEAR_RESULTS,
 } from '../types';
 
 const questionReducer = (state, action) => {
@@ -17,14 +19,13 @@ const questionReducer = (state, action) => {
         isQuestionsLoading: false,
       };
 
-    case LOAD_RESULTS: {
+    case LOAD_RESULTS:
       return {
         ...state,
         results: action.payload,
         resultsError: null,
         isResultsLoading: false,
       };
-    }
 
     case QUESTIONS_ERROR:
       return {
@@ -53,6 +54,22 @@ const questionReducer = (state, action) => {
         ...state,
         questionsError: action.payload,
         isQuestionsLoading: false,
+      };
+
+    case CLEAR_QUESTIONS:
+      return {
+        ...state,
+        questions: null,
+        questionsError: null,
+        isQuestionsLoading: true,
+      };
+
+    case CLEAR_RESULTS:
+      return {
+        ...state,
+        results: null,
+        resultsError: null,
+        isResultsLoading: true,
       };
 
     default:

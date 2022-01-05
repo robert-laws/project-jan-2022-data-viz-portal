@@ -1,15 +1,17 @@
 import { Chart } from 'react-google-charts';
 
-export const ColumnChart = ({ title, hAxisTitle, vAxisTitle, chartData }) => {
+export const BarChart = ({ title, hAxisTitle, vAxisTitle, chartData }) => {
   const options = {
     hAxis: {
       title: hAxisTitle,
+      minValue: 0,
+      maxValue: 10,
+      ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
     vAxis: {
       title: vAxisTitle,
-      maxValue: 10,
       minValue: 0,
-      ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      bars: 'horizontal',
     },
     legend: { position: 'bottom' },
   };
@@ -26,7 +28,7 @@ export const ColumnChart = ({ title, hAxisTitle, vAxisTitle, chartData }) => {
     <div className='chart'>
       <h3>{title}</h3>
       <Chart
-        chartType='ColumnChart'
+        chartType='BarChart'
         width='100%'
         height='400px'
         data={chartData}

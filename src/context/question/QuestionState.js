@@ -7,6 +7,8 @@ import {
   RESULTS_ERROR,
   SAVING_COMPLETE,
   SAVING_ERROR,
+  CLEAR_QUESTIONS,
+  CLEAR_RESULTS,
 } from '../types';
 import QuestionContext from './questionContext';
 import questionReducer from './questionReducer';
@@ -67,6 +69,7 @@ const QuestionState = ({ children }) => {
           allResults.push({ id: doc.id, ...doc.data() });
         });
         dispatch({ type: LOAD_RESULTS, payload: allResults });
+        console.log('db query...');
       }
     } catch (error) {
       dispatch({
@@ -95,6 +98,14 @@ const QuestionState = ({ children }) => {
     [dispatch]
   );
 
+  const clearQuestions = () => {
+    dispatch({ type: CLEAR_QUESTIONS });
+  };
+
+  const clearResults = () => {
+    dispatch({ type: CLEAR_RESULTS });
+  };
+
   return (
     <QuestionContext.Provider
       value={{
@@ -108,6 +119,8 @@ const QuestionState = ({ children }) => {
         loadQuestions,
         loadResults,
         saveResults,
+        clearQuestions,
+        clearResults,
       }}
     >
       {children}

@@ -21,3 +21,5 @@ export { PollQuestion } from './PollQuestion';
 
 // Charts
 export { ColumnChart } from './ColumnChart';
+export { BarChart } from './BarChart';
+export { LineChart } from './LineChart';

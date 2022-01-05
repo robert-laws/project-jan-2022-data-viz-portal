@@ -1,40 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useCheckUser } from '../hooks/useCheckUser';
-import { useQuestionContext } from '../hooks/useQuestionContext';
 import { useBuildChartArray } from '../hooks/useBuildChartArray';
-import { ColumnChart } from '../components';
+import { BarChart, ColumnChart, LineChart } from '../components';
 
 export const Profile = () => {
-  const [resultsList, setResultsList] = useState([]);
   const [chartData, setChartData] = useState([]);
   const { user, profile, isProfileLoading, profileError } = useCheckUser();
-  const { results, loadResults, isResultsLoading, resultsError } =
-    useQuestionContext();
-
-  const googleChartData = useBuildChartArray(
-    resultsList,
+  const [googleChartData, isResultsLoading, resultsError] = useBuildChartArray(
+    user,
     'weekNumber',
     'Weeks',
     'Scores'
   );
 
   useEffect(() => {
-    if (user) {
-      loadResults(user.uid);
-    }
-  }, [user, loadResults]);
-
-  useEffect(() => {
-    if (results) {
-      const userResults = results.filter(
-        (result) => result.userId === user.uid
-      );
-      setResultsList(userResults);
-    }
-  }, [results, user]);
-
-  useEffect(() => {
-    console.log(googleChartData);
     setChartData(googleChartData);
   }, [googleChartData]);
 
@@ -47,19 +26,54 @@ export const Profile = () => {
           <p>
             {profile.firstName} {profile.lastName}
           </p>
-          <p>
-            {isResultsLoading && !resultsError ? (
-              <span>Loading...</span>
-            ) : (
-              <span>Number of Results: {resultsList.length}</span>
-            )}
-          </p>
         </div>
       )}
       {profileError && <p>{profileError}</p>}
       <div>
-        {googleChartData && googleChartData.length > 1 && (
-          <ColumnChart title='Quiz Results' chartData={chartData} />
+        {isResultsLoading && !resultsError ? (
+          <p>Loading...</p>
+        ) : (
+          <div>
+            {resultsError && <p>{resultsError}</p>}
+            {googleChartData && (
+              <ColumnChart
+                title='Quiz Results'
+                chartData={chartData}
+                vAxisTitle='Score'
+                hAxisTitle='Weeks'
+              />
+            )}
+          </div>
+        )}
+        {isResultsLoading && !resultsError ? (
+          <p>Loading...</p>
+        ) : (
+          <div>
+            {resultsError && <p>{resultsError}</p>}
+            {googleChartData && (
+              <BarChart
+                title='Quiz Results'
+                chartData={chartData}
+                vAxisTitle='Weeks'
+                hAxisTitle='Score'
+              />
+            )}
+          </div>
+        )}
+        {isResultsLoading && !resultsError ? (
+          <p>Loading...</p>
+        ) : (
+          <div>
+            {resultsError && <p>{resultsError}</p>}
+            {googleChartData && (
+              <LineChart
+                title='Quiz Results'
+                chartData={chartData}
+                vAxisTitle='Weeks'
+                hAxisTitle='Score'
+              />
+            )}
+          </div>
         )}
       </div>
     </div>
