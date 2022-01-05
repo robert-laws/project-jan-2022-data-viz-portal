@@ -18,7 +18,6 @@ export const Quiz = () => {
   useEffect(() => {
     if (user && !questions) {
       loadQuestions();
-      console.log('loading...');
     }
   }, [user, questions, loadQuestions]);
 

@@ -14,7 +14,7 @@ export const QuizCard = ({ weekNumber, topic, openDate, completed }) => {
         )}
         {!completed && dateToday <= quizOpenDate && 'Upcoming'}
         {completed && (
-          <Link className='link-button' to={`/quiz-results/${weekNumber}`}>
+          <Link className='link-button' to={`/quiz/results/${weekNumber}`}>
             {completed && 'View Results'}
           </Link>
         )}

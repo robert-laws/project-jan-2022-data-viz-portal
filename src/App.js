@@ -8,6 +8,7 @@ import {
   Poll,
   Profile,
   Quiz,
+  QuizResults,
   Signup,
   AddData,
 } from './pages';
@@ -25,10 +26,13 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/knowledge-base' element={<KnowledgeBase />} />
-            <Route path='/poll' element={<Poll />} />
-            <Route path='/poll/:weekNumber' element={<Poll />} />
-            <Route path='/quiz' element={<Quiz />} />
-            <Route path='/quiz/:weekNumber' element={<Quiz />} />
+            <Route path='/poll' element={<Poll />}>
+              <Route path=':weekNumber' element={<Poll />} />
+            </Route>
+            <Route path='/quiz' element={<Quiz />}>
+              <Route path=':weekNumber' element={<Quiz />} />
+            </Route>
+            <Route path='/quiz/results/:weekNumber' element={<QuizResults />} />
             <Route path='/add' element={<AddData />} />
             <Route
               path='/login'
