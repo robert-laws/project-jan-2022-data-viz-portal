@@ -8,8 +8,7 @@ export const useCheckUser = () => {
   const { user } = useAuthContext();
   const { profile, isProfileLoading, profileError, loadProfile, clearProfile } =
     useUserContext();
-  const { results, loadResults, clearQuestions, clearResults } =
-    useQuestionContext();
+  const { loadResults, clearQuestions, clearResults } = useQuestionContext();
 
   const navigate = useNavigate();
 
@@ -33,10 +32,10 @@ export const useCheckUser = () => {
   ]);
 
   useEffect(() => {
-    if (user && !results) {
+    if (user) {
       loadResults(user.uid);
     }
-  }, [user, results, loadResults]);
+  }, [user, loadResults]);
 
   return { user, profile, isProfileLoading, profileError };
 };

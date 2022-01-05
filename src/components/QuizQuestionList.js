@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { QuizQuestion } from './QuizQuestion';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 import { useUserContext } from '../hooks/useUserContext';
@@ -11,8 +12,10 @@ export const QuizQuestionList = ({
 }) => {
   const [quizAnswers, setQuizAnswers] = useState([]);
 
+  const navigate = useNavigate();
+
   const { saveResults } = useQuestionContext();
-  const { updateUserCompletedList } = useUserContext();
+  const { updateUserCompletedList, isProfileUpdating } = useUserContext();
 
   const handleAnswer = useCallback(
     (answer) => {
@@ -41,6 +44,10 @@ export const QuizQuestionList = ({
 
     saveResults(quizAnswers);
     updateUserCompletedList('quiz', userId, quizCompletedList);
+
+    if (!isProfileUpdating) {
+      navigate('/profile', { replace: true });
+    }
   };
 
   if (!questions) {

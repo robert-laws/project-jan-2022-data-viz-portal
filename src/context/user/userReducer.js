@@ -13,6 +13,7 @@ const userReducer = (state, action) => {
         profile: action.payload,
         profileError: null,
         isProfileLoading: false,
+        isProfileUpdating: true,
       };
 
     case PROFILE_ERROR:
@@ -20,12 +21,14 @@ const userReducer = (state, action) => {
         ...state,
         profileError: action.payload,
         isProfileLoading: false,
+        isProfileUpdating: false,
       };
 
     case CLEAR_PROFILE:
       return {
         profile: null,
         isProfileLoading: true,
+        isProfileUpdating: true,
         profileError: null,
       };
 
@@ -36,6 +39,8 @@ const userReducer = (state, action) => {
           ...state.profile,
           ...action.payload,
         },
+        isProfileLoading: true,
+        isProfileUpdating: false,
         profileError: null,
       };
 

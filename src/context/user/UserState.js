@@ -15,6 +15,7 @@ const UserState = ({ children }) => {
   const initialState = {
     profile: null,
     isProfileLoading: true,
+    isProfileUpdating: true,
     profileError: null,
   };
 
@@ -66,6 +67,7 @@ const UserState = ({ children }) => {
       value={{
         profile: state.profile,
         isProfileLoading: state.isProfileLoading,
+        isProfileUpdating: state.isProfileUpdating,
         profileError: state.profileError,
         loadProfile,
         clearProfile,
