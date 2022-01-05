@@ -1,5 +1,12 @@
 import { useReducer, useCallback } from 'react';
-import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  query,
+  where,
+} from 'firebase/firestore';
 import {
   LOAD_QUESTIONS,
   LOAD_RESULTS,
@@ -53,31 +60,35 @@ const QuestionState = ({ children }) => {
     }
   }, [dispatch]);
 
-  const loadResults = useCallback(async () => {
-    const colRef = collection(db, 'results');
+  const loadResults = useCallback(
+    async (userId) => {
+      const colRef = collection(db, 'results');
+      const q = query(colRef, where('userId', '==', userId));
 
-    try {
-      const querySnapshot = await getDocs(colRef);
-      if (querySnapshot.empty) {
+      try {
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+          dispatch({
+            type: RESULTS_ERROR,
+            payload: 'No results documents found',
+          });
+        } else {
+          let allResults = [];
+          querySnapshot.forEach((doc) => {
+            allResults.push({ id: doc.id, ...doc.data() });
+          });
+          dispatch({ type: LOAD_RESULTS, payload: allResults });
+          console.log('db query...');
+        }
+      } catch (error) {
         dispatch({
           type: RESULTS_ERROR,
-          payload: 'No results documents found',
+          payload: `Database Error: ${error.message}`,
         });
-      } else {
-        let allResults = [];
-        querySnapshot.forEach((doc) => {
-          allResults.push({ id: doc.id, ...doc.data() });
-        });
-        dispatch({ type: LOAD_RESULTS, payload: allResults });
-        console.log('db query...');
       }
-    } catch (error) {
-      dispatch({
-        type: RESULTS_ERROR,
-        payload: `Database Error: ${error.message}`,
-      });
-    }
-  }, [dispatch]);
+    },
+    [dispatch]
+  );
 
   const saveResults = useCallback(
     async (answers) => {
