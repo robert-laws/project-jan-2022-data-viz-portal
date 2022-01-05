@@ -6,8 +6,14 @@ import { useQuestionContext } from './useQuestionContext';
 
 export const useCheckUser = () => {
   const { user } = useAuthContext();
-  const { profile, isProfileLoading, profileError, loadProfile, clearProfile } =
-    useUserContext();
+  const {
+    profile,
+    isProfileLoading,
+    profileError,
+    loadProfile,
+    clearProfile,
+    resetUpdateProfile,
+  } = useUserContext();
   const { loadResults, clearQuestions, clearResults } = useQuestionContext();
 
   const navigate = useNavigate();
@@ -30,6 +36,10 @@ export const useCheckUser = () => {
     clearQuestions,
     clearResults,
   ]);
+
+  useEffect(() => {
+    resetUpdateProfile();
+  }, [resetUpdateProfile]);
 
   useEffect(() => {
     if (user) {

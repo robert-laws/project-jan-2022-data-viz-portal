@@ -98,13 +98,13 @@ const QuestionState = ({ children }) => {
     [dispatch]
   );
 
-  const clearQuestions = () => {
+  const clearQuestions = useCallback(() => {
     dispatch({ type: CLEAR_QUESTIONS });
-  };
+  }, [dispatch]);
 
-  const clearResults = () => {
+  const clearResults = useCallback(() => {
     dispatch({ type: CLEAR_RESULTS });
-  };
+  }, [dispatch]);
 
   return (
     <QuestionContext.Provider

@@ -3,6 +3,7 @@ import {
   LOAD_PROFILE,
   PROFILE_ERROR,
   UPDATE_PROFILE,
+  RESET_UPDATE_PROFILE,
 } from '../types';
 
 const userReducer = (state, action) => {
@@ -39,9 +40,14 @@ const userReducer = (state, action) => {
           ...state.profile,
           ...action.payload,
         },
-        isProfileLoading: true,
         isProfileUpdating: false,
         profileError: null,
+      };
+
+    case RESET_UPDATE_PROFILE:
+      return {
+        ...state,
+        isProfileUpdating: true,
       };
 
     default:

@@ -14,6 +14,14 @@ export const ColumnChart = ({ title, hAxisTitle, vAxisTitle, chartData }) => {
     legend: { position: 'bottom' },
   };
 
+  if (chartData.length === 0) {
+    return (
+      <div>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
   if (chartData.length === 1) {
     return (
       <div>

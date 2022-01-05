@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PollQuestion } from './PollQuestion';
 import { useQuestionContext } from '../hooks/useQuestionContext';
@@ -35,6 +35,12 @@ export const PollQuestionList = ({
     [userId]
   );
 
+  useEffect(() => {
+    if (!isProfileUpdating) {
+      navigate('/profile');
+    }
+  }, [isProfileUpdating, navigate]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -44,10 +50,6 @@ export const PollQuestionList = ({
 
     saveResults(pollAnswers);
     updateUserCompletedList('poll', userId, pollCompletedList);
-
-    if (!isProfileUpdating) {
-      navigate('/profile', { replace: true });
-    }
   };
 
   if (!questions) {

@@ -5,6 +5,7 @@ import {
   PROFILE_ERROR,
   CLEAR_PROFILE,
   UPDATE_PROFILE,
+  RESET_UPDATE_PROFILE,
 } from '../types';
 import UserContext from './userContext';
 import userReducer from './userReducer';
@@ -58,9 +59,13 @@ const UserState = ({ children }) => {
     [dispatch]
   );
 
-  const clearProfile = () => {
+  const clearProfile = useCallback(() => {
     dispatch({ type: CLEAR_PROFILE });
-  };
+  }, [dispatch]);
+
+  const resetUpdateProfile = useCallback(() => {
+    dispatch({ type: RESET_UPDATE_PROFILE });
+  }, [dispatch]);
 
   return (
     <UserContext.Provider
@@ -72,6 +77,7 @@ const UserState = ({ children }) => {
         loadProfile,
         clearProfile,
         updateUserCompletedList,
+        resetUpdateProfile,
       }}
     >
       {children}
