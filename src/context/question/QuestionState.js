@@ -2,7 +2,9 @@ import { useReducer, useCallback } from 'react';
 import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
 import {
   LOAD_QUESTIONS,
+  LOAD_RESULTS,
   QUESTIONS_ERROR,
+  RESULTS_ERROR,
   SAVING_COMPLETE,
   SAVING_ERROR,
 } from '../types';
@@ -14,8 +16,11 @@ const db = getFirestore();
 const QuestionState = ({ children }) => {
   const initialState = {
     questions: null,
+    results: null,
     isQuestionsLoading: true,
+    isResultsLoading: true,
     questionsError: null,
+    resultsError: null,
     isSaving: true,
   };
 
@@ -26,9 +31,11 @@ const QuestionState = ({ children }) => {
 
     try {
       const querySnapshot = await getDocs(colRef);
-      console.log('request made...');
       if (querySnapshot.empty) {
-        dispatch({ type: QUESTIONS_ERROR, payload: 'No documents found' });
+        dispatch({
+          type: QUESTIONS_ERROR,
+          payload: 'No question documents found',
+        });
       } else {
         let allQuestions = [];
         querySnapshot.forEach((doc) => {
@@ -39,6 +46,31 @@ const QuestionState = ({ children }) => {
     } catch (error) {
       dispatch({
         type: QUESTIONS_ERROR,
+        payload: `Database Error: ${error.message}`,
+      });
+    }
+  }, [dispatch]);
+
+  const loadResults = useCallback(async () => {
+    const colRef = collection(db, 'results');
+
+    try {
+      const querySnapshot = await getDocs(colRef);
+      if (querySnapshot.empty) {
+        dispatch({
+          type: RESULTS_ERROR,
+          payload: 'No results documents found',
+        });
+      } else {
+        let allResults = [];
+        querySnapshot.forEach((doc) => {
+          allResults.push({ id: doc.id, ...doc.data() });
+        });
+        dispatch({ type: LOAD_RESULTS, payload: allResults });
+      }
+    } catch (error) {
+      dispatch({
+        type: RESULTS_ERROR,
         payload: `Database Error: ${error.message}`,
       });
     }
@@ -67,10 +99,14 @@ const QuestionState = ({ children }) => {
     <QuestionContext.Provider
       value={{
         questions: state.questions,
+        results: state.results,
         isQuestionsLoading: state.isQuestionsLoading,
+        isResultsLoading: state.isResultsLoading,
         questionsError: state.questionsError,
+        resultsError: state.resultsError,
         isSaving: state.isSaving,
         loadQuestions,
+        loadResults,
         saveResults,
       }}
     >

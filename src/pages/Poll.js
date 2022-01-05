@@ -18,7 +18,6 @@ export const Poll = () => {
   useEffect(() => {
     if (user && !questions) {
       loadQuestions();
-      console.log('loading...');
     }
   }, [user, questions, loadQuestions]);
 
