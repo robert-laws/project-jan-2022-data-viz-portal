@@ -18,3 +18,6 @@ export { PollCards } from './PollCards';
 export { PollCard } from './PollCard';
 export { PollQuestionList } from './PollQuestionList';
 export { PollQuestion } from './PollQuestion';
+
+// Charts
+export { ColumnChart } from './ColumnChart';
