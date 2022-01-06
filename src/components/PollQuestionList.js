@@ -4,18 +4,20 @@ import { PollQuestion } from './PollQuestion';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 import { useUserContext } from '../hooks/useUserContext';
 
-export const PollQuestionList = ({
-  weekNumber,
-  questions,
-  userId,
-  profile,
-}) => {
+export const PollQuestionList = ({ weekNumber, userId, profile }) => {
+  const { questions, isQuestionsLoading, questionsError, loadQuestions } =
+    useQuestionContext();
+
   const [pollAnswers, setPollAnswers] = useState([]);
 
   const navigate = useNavigate();
 
   const { saveResults } = useQuestionContext();
   const { updateUserCompletedList, isProfileUpdating } = useUserContext();
+
+  useEffect(() => {
+    loadQuestions('poll', weekNumber);
+  }, [loadQuestions, weekNumber]);
 
   const handleAnswer = useCallback(
     (answer) => {
@@ -52,7 +54,7 @@ export const PollQuestionList = ({
     updateUserCompletedList('poll', userId, pollCompletedList);
   };
 
-  if (!questions) {
+  if (isQuestionsLoading) {
     return <p>Loading...</p>;
   }
 
@@ -67,6 +69,7 @@ export const PollQuestionList = ({
           updateAnswers={handleAnswer}
         />
       ))}
+      {questionsError && <p>{questionsError}</p>}
       <button>Submit Poll</button>
     </form>
   );

@@ -4,18 +4,20 @@ import { QuizQuestion } from './QuizQuestion';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 import { useUserContext } from '../hooks/useUserContext';
 
-export const QuizQuestionList = ({
-  weekNumber,
-  questions,
-  userId,
-  profile,
-}) => {
+export const QuizQuestionList = ({ weekNumber, userId, profile }) => {
+  const { questions, isQuestionsLoading, questionsError, loadQuestions } =
+    useQuestionContext();
+
   const [quizAnswers, setQuizAnswers] = useState([]);
 
   const navigate = useNavigate();
 
   const { saveResults } = useQuestionContext();
   const { updateUserCompletedList, isProfileUpdating } = useUserContext();
+
+  useEffect(() => {
+    loadQuestions('quiz', weekNumber);
+  }, [loadQuestions, weekNumber]);
 
   const handleAnswer = useCallback(
     (answer) => {
@@ -52,21 +54,23 @@ export const QuizQuestionList = ({
     updateUserCompletedList('quiz', userId, quizCompletedList);
   };
 
-  if (!questions) {
+  if (isQuestionsLoading) {
     return <p>Loading...</p>;
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>Quiz Questions for Week {weekNumber}</h2>
-      {questions.map((question, index) => (
-        <QuizQuestion
-          key={question.id}
-          number={index + 1}
-          {...question}
-          updateAnswers={handleAnswer}
-        />
-      ))}
+      {questions &&
+        questions.map((question, index) => (
+          <QuizQuestion
+            key={question.id}
+            number={index + 1}
+            {...question}
+            updateAnswers={handleAnswer}
+          />
+        ))}
+      {questionsError && <p>{questionsError}</p>}
       <button>Submit Quiz</button>
     </form>
   );

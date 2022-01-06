@@ -35,30 +35,38 @@ const QuestionState = ({ children }) => {
 
   const [state, dispatch] = useReducer(questionReducer, initialState);
 
-  const loadQuestions = useCallback(async () => {
-    const colRef = collection(db, 'questions');
+  const loadQuestions = useCallback(
+    async (category, weekNumber) => {
+      const colRef = collection(db, 'questions');
+      const q = query(
+        colRef,
+        where('category', '==', category),
+        where('weekNumber', '==', parseInt(weekNumber))
+      );
 
-    try {
-      const querySnapshot = await getDocs(colRef);
-      if (querySnapshot.empty) {
+      try {
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+          dispatch({
+            type: QUESTIONS_ERROR,
+            payload: 'No question documents found',
+          });
+        } else {
+          let allQuestions = [];
+          querySnapshot.forEach((doc) => {
+            allQuestions.push({ id: doc.id, ...doc.data() });
+          });
+          dispatch({ type: LOAD_QUESTIONS, payload: allQuestions });
+        }
+      } catch (error) {
         dispatch({
           type: QUESTIONS_ERROR,
-          payload: 'No question documents found',
+          payload: `Database Error: ${error.message}`,
         });
-      } else {
-        let allQuestions = [];
-        querySnapshot.forEach((doc) => {
-          allQuestions.push({ id: doc.id, ...doc.data() });
-        });
-        dispatch({ type: LOAD_QUESTIONS, payload: allQuestions });
       }
-    } catch (error) {
-      dispatch({
-        type: QUESTIONS_ERROR,
-        payload: `Database Error: ${error.message}`,
-      });
-    }
-  }, [dispatch]);
+    },
+    [dispatch]
+  );
 
   const loadResults = useCallback(
     async (userId) => {
