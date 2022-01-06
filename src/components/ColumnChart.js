@@ -1,6 +1,13 @@
 import { Chart } from 'react-google-charts';
 
-export const ColumnChart = ({ title, hAxisTitle, vAxisTitle, chartData }) => {
+export const ColumnChart = ({
+  title,
+  hAxisTitle,
+  vAxisTitle,
+  chartData,
+  loading,
+  error,
+}) => {
   const options = {
     hAxis: {
       title: hAxisTitle,
@@ -14,7 +21,7 @@ export const ColumnChart = ({ title, hAxisTitle, vAxisTitle, chartData }) => {
     legend: { position: 'bottom' },
   };
 
-  if (chartData.length === 0) {
+  if (loading) {
     return (
       <div>
         <p>Loading...</p>
@@ -22,7 +29,7 @@ export const ColumnChart = ({ title, hAxisTitle, vAxisTitle, chartData }) => {
     );
   }
 
-  if (chartData.length === 1) {
+  if (error) {
     return (
       <div>
         <p>No Data to Display</p>

@@ -52,22 +52,21 @@ export const Profile = () => {
           </div>
         </div>
       )}
+      <h1>Charts</h1>
       <div>
-        {isResultsLoading && !resultsError ? (
-          <p>Loading...</p>
-        ) : (
-          <div>
-            {resultsError && <p>{resultsError}</p>}
-            {googleChartData && (
-              <ColumnChart
-                title='Quiz Results'
-                chartData={googleChartData}
-                vAxisTitle='Score'
-                hAxisTitle='Weeks'
-              />
-            )}
-          </div>
-        )}
+        <div>
+          {googleChartData && (
+            <ColumnChart
+              title='Quiz Results'
+              chartData={googleChartData}
+              vAxisTitle='Score'
+              hAxisTitle='Weeks'
+              loading={isResultsLoading}
+              error={resultsError}
+            />
+          )}
+        </div>
+
         {isResultsLoading && !resultsError ? (
           <p>Loading...</p>
         ) : (
