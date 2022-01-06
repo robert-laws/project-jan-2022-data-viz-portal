@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useCheckUser } from '../hooks/useCheckUser';
 import { useBuildChartArray } from '../hooks/useBuildChartArray';
-import { BarChart, ColumnChart, LineChart } from '../components';
+import {
+  BarChart,
+  ColumnChart,
+  LineChart,
+  QuizCards,
+  PollCards,
+} from '../components';
 
 export const Profile = () => {
   const [chartData, setChartData] = useState([]);
@@ -12,6 +18,16 @@ export const Profile = () => {
     'Weeks',
     'Scores'
   );
+
+  const [completedQuizList, setCompletedQuizList] = useState([]);
+  const [completedPollList, setCompletedPollList] = useState([]);
+
+  useEffect(() => {
+    if (profile) {
+      setCompletedQuizList(profile.quiz);
+      setCompletedPollList(profile.poll);
+    }
+  }, [profile]);
 
   useEffect(() => {
     setChartData(googleChartData);
@@ -29,6 +45,16 @@ export const Profile = () => {
         </div>
       )}
       {profileError && <p>{profileError}</p>}
+      {profile && (
+        <div>
+          <div>
+            <QuizCards completed={completedQuizList} />
+          </div>
+          <div>
+            <PollCards completed={completedPollList} />
+          </div>
+        </div>
+      )}
       <div>
         {isResultsLoading && !resultsError ? (
           <p>Loading...</p>
