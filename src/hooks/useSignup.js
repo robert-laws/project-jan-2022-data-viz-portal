@@ -80,10 +80,8 @@ export const useSignup = () => {
   };
 
   useEffect(() => {
-    return () => {
-      setIsCancelled(true);
-    };
-  });
+    return () => setIsCancelled(true);
+  }, []);
 
   useEffect(() => {
     if (user) {

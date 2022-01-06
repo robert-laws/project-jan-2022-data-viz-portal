@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useCheckUser } from '../hooks/useCheckUser';
 import { useBuildChartArray } from '../hooks/useBuildChartArray';
 import {
@@ -10,48 +9,45 @@ import {
 } from '../components';
 
 export const Profile = () => {
-  const [chartData, setChartData] = useState([]);
+  // useCheckUser()
+  // 1) queries for profile first time on page
+  // 2) queries user's results on every profile page load - data into results state in QuestionContext
   const { user, profile, isProfileLoading, profileError } = useCheckUser();
+
+  // useBuildChartArray()
+  // depends on results state in QuestionContext, which is loaded by useCheckUser()
   const [googleChartData, isResultsLoading, resultsError] = useBuildChartArray(
-    user,
     'weekNumber',
     'Weeks',
     'Scores'
   );
-
-  const [completedQuizList, setCompletedQuizList] = useState([]);
-  const [completedPollList, setCompletedPollList] = useState([]);
-
-  useEffect(() => {
-    if (profile) {
-      setCompletedQuizList(profile.quiz);
-      setCompletedPollList(profile.poll);
-    }
-  }, [profile]);
-
-  useEffect(() => {
-    setChartData(googleChartData);
-  }, [googleChartData]);
 
   return (
     <div>
       {isProfileLoading && !profileError ? (
         <p>Loading...</p>
       ) : (
-        <div>
-          <p>
-            {profile.firstName} {profile.lastName}
-          </p>
-        </div>
+        user &&
+        profile && (
+          <div>
+            <p>
+              {profile.firstName} {profile.lastName}
+            </p>
+            <p>email: {user.email}</p>
+            <p>class: {profile.studentClass}</p>
+            <p>class: {profile.studentMajor}</p>
+            <p>class: {profile.meetingDay}</p>
+          </div>
+        )
       )}
       {profileError && <p>{profileError}</p>}
-      {profile && (
+      {profile && !profileError && (
         <div>
           <div>
-            <QuizCards completed={completedQuizList} />
+            <QuizCards completed={profile.quiz} />
           </div>
           <div>
-            <PollCards completed={completedPollList} />
+            <PollCards completed={profile.poll} />
           </div>
         </div>
       )}
@@ -64,7 +60,7 @@ export const Profile = () => {
             {googleChartData && (
               <ColumnChart
                 title='Quiz Results'
-                chartData={chartData}
+                chartData={googleChartData}
                 vAxisTitle='Score'
                 hAxisTitle='Weeks'
               />
@@ -79,7 +75,7 @@ export const Profile = () => {
             {googleChartData && (
               <BarChart
                 title='Quiz Results'
-                chartData={chartData}
+                chartData={googleChartData}
                 vAxisTitle='Weeks'
                 hAxisTitle='Score'
               />
@@ -94,7 +90,7 @@ export const Profile = () => {
             {googleChartData && (
               <LineChart
                 title='Quiz Results'
-                chartData={chartData}
+                chartData={googleChartData}
                 vAxisTitle='Weeks'
                 hAxisTitle='Score'
               />

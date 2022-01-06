@@ -1,31 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 
-export const useBuildChartArray = (user, property, xAxisTitle, yAxisTitle) => {
+export const useBuildChartArray = (property, xAxisTitle, yAxisTitle) => {
   const { results, isResultsLoading, resultsError } = useQuestionContext();
-  const [resultsList, setResultsList] = useState(null);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (results && user) {
-      const userResults = results.filter(
-        (result) => result.userId === user.uid
-      );
-      setResultsList(userResults);
-    }
-  }, [results, user]);
-
-  useEffect(() => {
-    if (resultsList) {
+    if (results) {
       const chartData = prepareUserQuizzesForVisualization(
         xAxisTitle,
         yAxisTitle,
-        groupResults(getResultsForQuizzes(resultsList), property)
+        groupResults(getResultsForQuizzes(results), property)
       );
 
       setData(chartData);
     }
-  }, [resultsList, property, xAxisTitle, yAxisTitle]);
+  }, [results, property, xAxisTitle, yAxisTitle]);
 
   const getResultsForQuizzes = (allResults) => {
     let results = [];
