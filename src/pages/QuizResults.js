@@ -43,7 +43,47 @@ export const QuizResults = () => {
   console.log('Answers: ', quizAnswers);
   console.log('Questions: ', quizQuestions);
 
-  return <div>Quiz Results for Week {weekNumber}</div>;
+  return (
+    <div>
+      <h2>Quiz Results for Week {weekNumber}</h2>
+      {quizQuestions.map((question) => (
+        <div key={question.id}>
+          <p>{question.questionText}</p>
+          <ul>
+            {question.answers.map((answer) => {
+              if (answer === question.correctAnswer) {
+                if (
+                  quizAnswers.find(
+                    (answer) =>
+                      answer.questionNumber ===
+                      question.questionNumber.toString()
+                  ).answer === answer
+                ) {
+                  return <li key={answer}>{answer} - Correct - Your Answer</li>;
+                } else {
+                  return <li key={answer}>{answer} - Correct</li>;
+                }
+              } else {
+                if (
+                  quizAnswers.find(
+                    (answer) =>
+                      answer.questionNumber ===
+                      question.questionNumber.toString()
+                  ).answer === answer
+                ) {
+                  return (
+                    <li key={answer}>{answer} - Incorrect - Your Answer</li>
+                  );
+                } else {
+                  return <li key={answer}>{answer} - Incorrect</li>;
+                }
+              }
+            })}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
 
   // get results
 };
