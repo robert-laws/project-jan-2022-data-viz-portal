@@ -67,36 +67,31 @@ export const Profile = () => {
           )}
         </div>
 
-        {isResultsLoading && !resultsError ? (
-          <p>Loading...</p>
-        ) : (
-          <div>
-            {resultsError && <p>{resultsError}</p>}
-            {googleChartData && (
-              <BarChart
-                title='Quiz Results'
-                chartData={googleChartData}
-                vAxisTitle='Weeks'
-                hAxisTitle='Score'
-              />
-            )}
-          </div>
-        )}
-        {isResultsLoading && !resultsError ? (
-          <p>Loading...</p>
-        ) : (
-          <div>
-            {resultsError && <p>{resultsError}</p>}
-            {googleChartData && (
-              <LineChart
-                title='Quiz Results'
-                chartData={googleChartData}
-                vAxisTitle='Weeks'
-                hAxisTitle='Score'
-              />
-            )}
-          </div>
-        )}
+        <div>
+          {googleChartData && (
+            <BarChart
+              title='Quiz Results'
+              chartData={googleChartData}
+              vAxisTitle='Weeks'
+              hAxisTitle='Score'
+              loading={isResultsLoading}
+              error={resultsError}
+            />
+          )}
+        </div>
+
+        <div>
+          {googleChartData && (
+            <LineChart
+              title='Quiz Results'
+              chartData={googleChartData}
+              vAxisTitle='Weeks'
+              hAxisTitle='Score'
+              loading={isResultsLoading}
+              error={resultsError}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

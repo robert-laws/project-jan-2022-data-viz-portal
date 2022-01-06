@@ -98,6 +98,41 @@ const QuestionState = ({ children }) => {
     [dispatch]
   );
 
+  const loadResultsForCategoryAndWeekNumber = useCallback(
+    async (userId, category, weekNumber) => {
+      const colRef = collection(db, 'results');
+      const q = query(
+        colRef,
+        where('userId', '==', userId),
+        where('category', '==', category),
+        where('weekNumber', '==', parseInt(weekNumber))
+      );
+
+      try {
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+          dispatch({
+            type: RESULTS_ERROR,
+            payload: 'No results documents found',
+          });
+        } else {
+          let allResults = [];
+          querySnapshot.forEach((doc) => {
+            allResults.push({ id: doc.id, ...doc.data() });
+          });
+          dispatch({ type: LOAD_RESULTS, payload: allResults });
+          console.log('db query...');
+        }
+      } catch (error) {
+        dispatch({
+          type: RESULTS_ERROR,
+          payload: `Database Error: ${error.message}`,
+        });
+      }
+    },
+    [dispatch]
+  );
+
   const saveResults = useCallback(
     async (answers) => {
       const colRef = collection(db, 'results');
@@ -137,6 +172,7 @@ const QuestionState = ({ children }) => {
         isSaving: state.isSaving,
         loadQuestions,
         loadResults,
+        loadResultsForCategoryAndWeekNumber,
         saveResults,
         clearQuestions,
         clearResults,
