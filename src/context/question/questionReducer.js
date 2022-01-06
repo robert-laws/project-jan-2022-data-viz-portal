@@ -7,6 +7,7 @@ import {
   SAVING_COMPLETE,
   CLEAR_QUESTIONS,
   CLEAR_RESULTS,
+  RESET_IS_SAVING,
 } from '../types';
 
 const questionReducer = (state, action) => {
@@ -70,6 +71,12 @@ const questionReducer = (state, action) => {
         results: null,
         resultsError: null,
         isResultsLoading: true,
+      };
+
+    case RESET_IS_SAVING:
+      return {
+        ...state,
+        isSaving: true,
       };
 
     default:

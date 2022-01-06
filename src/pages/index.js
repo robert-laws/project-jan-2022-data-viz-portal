@@ -7,6 +7,7 @@ export { Profile } from './Profile';
 export { Quiz } from './Quiz';
 export { Signup } from './Signup';
 export { QuizResults } from './QuizResults';
+export { Dashboard } from './Dashboard';
 
 // utility to add data to firestore
 export { AddData } from './AddData';

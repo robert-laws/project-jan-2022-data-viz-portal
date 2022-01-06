@@ -16,6 +16,7 @@ import {
   SAVING_ERROR,
   CLEAR_QUESTIONS,
   CLEAR_RESULTS,
+  RESET_IS_SAVING,
 } from '../types';
 import QuestionContext from './questionContext';
 import questionReducer from './questionReducer';
@@ -160,6 +161,10 @@ const QuestionState = ({ children }) => {
     dispatch({ type: CLEAR_RESULTS });
   }, [dispatch]);
 
+  const resetIsSaving = useCallback(() => {
+    dispatch({ type: RESET_IS_SAVING });
+  }, [dispatch]);
+
   return (
     <QuestionContext.Provider
       value={{
@@ -176,6 +181,7 @@ const QuestionState = ({ children }) => {
         saveResults,
         clearQuestions,
         clearResults,
+        resetIsSaving,
       }}
     >
       {children}

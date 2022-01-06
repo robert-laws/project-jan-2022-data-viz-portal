@@ -3,16 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { QuizQuestion } from './QuizQuestion';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 import { useUserContext } from '../hooks/useUserContext';
+import { Button } from './Button';
 
 export const QuizQuestionList = ({ weekNumber, userId, profile }) => {
   const { questions, isQuestionsLoading, questionsError, loadQuestions } =
     useQuestionContext();
 
+  const [isSubmitPending, setIsSubmitPending] = useState(false);
   const [quizAnswers, setQuizAnswers] = useState([]);
 
   const navigate = useNavigate();
 
-  const { saveResults } = useQuestionContext();
+  const { saveResults, isSaving } = useQuestionContext();
   const { updateUserCompletedList, isProfileUpdating } = useUserContext();
 
   useEffect(() => {
@@ -38,13 +40,14 @@ export const QuizQuestionList = ({ weekNumber, userId, profile }) => {
   );
 
   useEffect(() => {
-    if (!isProfileUpdating) {
+    if (!isProfileUpdating && !isSaving) {
       navigate('/profile');
     }
-  }, [isProfileUpdating, navigate]);
+  }, [isProfileUpdating, isSaving, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitPending(true);
 
     let quizCompletedList = profile.quiz;
     const completedIndex = weekNumber - 1;
@@ -71,7 +74,9 @@ export const QuizQuestionList = ({ weekNumber, userId, profile }) => {
           />
         ))}
       {questionsError && <p>{questionsError}</p>}
-      <button>Submit Quiz</button>
+      <Button isLoading={isSubmitPending} styleClass='secondary'>
+        Submit Quiz
+      </Button>
     </form>
   );
 };

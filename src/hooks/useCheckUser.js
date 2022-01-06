@@ -14,7 +14,8 @@ export const useCheckUser = () => {
     clearProfile,
     resetUpdateProfile,
   } = useUserContext();
-  const { loadResults, clearQuestions, clearResults } = useQuestionContext();
+  const { loadResults, clearQuestions, clearResults, resetIsSaving } =
+    useQuestionContext();
 
   const navigate = useNavigate();
 
@@ -39,7 +40,8 @@ export const useCheckUser = () => {
 
   useEffect(() => {
     resetUpdateProfile();
-  }, [resetUpdateProfile]);
+    resetIsSaving();
+  }, [resetUpdateProfile, resetIsSaving]);
 
   useEffect(() => {
     if (user) {
