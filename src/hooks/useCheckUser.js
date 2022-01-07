@@ -14,8 +14,10 @@ export const useCheckUser = () => {
     clearProfile,
     resetUpdateProfile,
   } = useUserContext();
-  const { loadResults, clearQuestions, clearResults, resetIsSaving } =
+  const { results, loadResults, clearQuestions, clearResults, resetIsSaving } =
     useQuestionContext();
+
+  console.log(results);
 
   const navigate = useNavigate();
 
@@ -44,10 +46,11 @@ export const useCheckUser = () => {
   }, [resetUpdateProfile, resetIsSaving]);
 
   useEffect(() => {
-    if (user) {
+    if (user && !results) {
       loadResults(user.uid);
+      console.log('load results....');
     }
-  }, [user, loadResults]);
+  }, [user, results, loadResults]);
 
   return { user, profile, isProfileLoading, profileError };
 };

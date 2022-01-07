@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useCheckUser } from '../hooks/useCheckUser';
 import { useBuildChartArray } from '../hooks/useBuildChartArray';
 import {
@@ -12,6 +13,16 @@ import {
 // sections - profile, charts, etc.
 
 export const Profile = () => {
+  const quizCardsRef = useRef();
+  const pollCardsRef = useRef();
+
+  if (quizCardsRef.current && !quizCardsRef.current.hasChildNodes()) {
+    quizCardsRef.current.textContent = 'No quizzes currently available';
+  }
+  if (pollCardsRef.current && !pollCardsRef.current.hasChildNodes()) {
+    pollCardsRef.current.textContent = 'No polls currently available';
+  }
+
   // useCheckUser()
   // 1) queries for profile first time on page *QUERY PROFILE - only 1 record
   // 2) queries user's results on every profile page load - data into results state in QuestionContext *QUERY RESULTS BY USERID - up to 60 records
@@ -44,10 +55,10 @@ export const Profile = () => {
       {profileError && <p>{profileError}</p>}
       {profile && !profileError && (
         <div>
-          <div>
+          <div ref={quizCardsRef}>
             <QuizCards completed={profile.quiz} profilePage={true} />
           </div>
-          <div>
+          <div ref={pollCardsRef}>
             <PollCards completed={profile.poll} profilePage={true} />
           </div>
         </div>

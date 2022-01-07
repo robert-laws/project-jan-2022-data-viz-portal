@@ -70,9 +70,13 @@ const QuestionState = ({ children }) => {
   );
 
   const loadResults = useCallback(
-    async (userId) => {
+    async (userId, category = 'quiz') => {
       const colRef = collection(db, 'results');
-      const q = query(colRef, where('userId', '==', userId));
+      const q = query(
+        colRef,
+        where('userId', '==', userId),
+        where('category', '==', category)
+      );
 
       try {
         const querySnapshot = await getDocs(q);
