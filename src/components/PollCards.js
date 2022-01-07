@@ -3,7 +3,7 @@ import { PollCard } from './PollCard';
 import { pollSchedule } from '../data/pollSchedule';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 
-export const PollCards = ({ completed }) => {
+export const PollCards = ({ completed, profilePage = false }) => {
   const { clearQuestions } = useQuestionContext();
 
   useEffect(() => {
@@ -18,6 +18,11 @@ export const PollCards = ({ completed }) => {
   }
 
   return pollSchedule.map((poll, index) => (
-    <PollCard key={poll.id} completed={completed[index]} {...poll} />
+    <PollCard
+      key={poll.id}
+      completed={completed[index]}
+      profilePage={profilePage}
+      {...poll}
+    />
   ));
 };

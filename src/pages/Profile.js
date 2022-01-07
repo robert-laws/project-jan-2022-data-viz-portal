@@ -45,10 +45,10 @@ export const Profile = () => {
       {profile && !profileError && (
         <div>
           <div>
-            <QuizCards completed={profile.quiz} />
+            <QuizCards completed={profile.quiz} profilePage={true} />
           </div>
           <div>
-            <PollCards completed={profile.poll} />
+            <PollCards completed={profile.poll} profilePage={true} />
           </div>
         </div>
       )}

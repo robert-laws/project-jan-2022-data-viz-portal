@@ -3,7 +3,7 @@ import { QuizCard } from './QuizCard';
 import { quizSchedule } from '../data/quizSchedule';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 
-export const QuizCards = ({ completed }) => {
+export const QuizCards = ({ completed, profilePage = false }) => {
   const { clearQuestions } = useQuestionContext();
 
   useEffect(() => {
@@ -18,6 +18,11 @@ export const QuizCards = ({ completed }) => {
   }
 
   return quizSchedule.map((quiz, index) => (
-    <QuizCard key={quiz.id} completed={completed[index]} {...quiz} />
+    <QuizCard
+      key={quiz.id}
+      completed={completed[index]}
+      profilePage={profilePage}
+      {...quiz}
+    />
   ));
 };
