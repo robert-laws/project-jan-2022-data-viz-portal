@@ -50,7 +50,7 @@ export const Signup = () => {
 
   return (
     <section>
-      <form onSubmit={handleSubmit}>
+      <form className='app-form' onSubmit={handleSubmit}>
         <h2>Signup</h2>
         <div className='form-fields'>
           <div className='fields'>
@@ -89,8 +89,7 @@ export const Signup = () => {
                 onChange={handleChange}
               />
             </label>
-          </div>
-          <div className='fields'>
+
             <label>
               <span>Last Name</span>
               <input
@@ -112,8 +111,7 @@ export const Signup = () => {
                 }
               />
             </label>
-          </div>
-          <div className='fields'>
+
             <label>
               <span>Your Major</span>
               <Select
@@ -123,9 +121,8 @@ export const Signup = () => {
                 }
               />
             </label>
-          </div>
-          <div className='fields'>
-            <label>
+
+            <label style={{ paddingLeft: '1.5rem' }}>
               <span>Course Meeting Day</span>
               <div className='radio-buttons'>
                 <label className='radio'>

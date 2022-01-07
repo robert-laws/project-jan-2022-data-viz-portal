@@ -1,0 +1,31 @@
+// site color theme
+$dark-primary-color: #389994;
+$dark-secondary-color: #27538c;
+$dark-tertiary-color: #496d8c;
+
+$light-primary-color: #f2edd5;
+$light-secondary-color: #c6d8e2;
+
+$error-color: #ff0000;
+$light-error-color: #ffc0cb;
+$success-color: #00ff00;
+
+$white-color: #fff;
+$black-color: #000;
+$light-gray-color: #ccc;
+$gray-color: #777;
+$dark-gray-color: #333;
+
+// typography
+$sans-font: 'Poppins', sans-serif;
+// $serif-font: 'PT Serif', serif;
+
+// font sizing
+$font-size-base: 1rem;
+$font-size-normal-text: $font-size-base * 1.6;
+
+// sizing
+$base-border-radius: 4px;
+
+// box-shadow
+$base-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);

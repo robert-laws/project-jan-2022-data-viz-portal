@@ -1,7 +1,35 @@
-.App {
-  text-align: center;
+@use '../abstracts' as a;
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Poppins:wght@400;700&display=swap');
 
-  h1 {
-    color: red;
-  }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: a.$sans-font;
+}
+
+h6,
+p,
+ol,
+ul,
+a,
+label,
+span,
+input {
+  font-family: a.$sans-font;
+  font-size: a.$font-size-normal-text;
+}
+
+p {
+  margin: 1.6rem 0;
+}
+
+.loader {
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-left: 4px solid;
+  animation: load 1s infinite linear;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
 }

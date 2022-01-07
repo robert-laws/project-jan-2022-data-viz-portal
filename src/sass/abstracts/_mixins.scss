@@ -1,0 +1,88 @@
+@use './variables' as v;
+
+// base link
+@mixin link(
+  $color: v.$dark-secondary-color,
+  $hover-color: v.$dark-primary-color,
+  $active-color: v.$dark-primary-color
+) {
+  a {
+    color: $color;
+    text-decoration: none;
+
+    &:link {
+      color: $color;
+    }
+
+    &:visited {
+      color: $color;
+    }
+
+    &:hover {
+      color: $hover-color;
+    }
+
+    &:active {
+      color: $hover-color;
+    }
+
+    &.active {
+      color: $active-color;
+    }
+  }
+}
+
+@mixin link-button(
+  $button-color: v.$dark-secondary-color,
+  $button-hover-color: v.$dark-primary-color
+) {
+  a {
+    display: inline-block;
+    text-decoration: none;
+    border-color: $button-color;
+    background-color: v.$white-color;
+    color: $button-color;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: v.$base-border-radius;
+    cursor: pointer;
+    font-size: v.$font-size-normal-text;
+    font-weight: normal;
+    padding: 0.6rem 2rem;
+    transition: all 0.1s ease;
+
+    &:hover {
+      background-color: $button-hover-color;
+      color: v.$white-color;
+    }
+  }
+}
+
+@mixin button(
+  $button-color: v.$dark-secondary-color,
+  $button-text: v.$white-color
+) {
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    background-color: $button-color;
+    color: v.$white-color;
+
+    &:hover {
+      background-color: $button-text;
+      color: v.$white-color;
+    }
+  }
+}

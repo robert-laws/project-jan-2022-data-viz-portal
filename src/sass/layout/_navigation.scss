@@ -1,0 +1,53 @@
+@use '../abstracts' as a;
+
+header {
+  width: 100%;
+  border-bottom: 1px solid lighten(a.$light-gray-color, 10%);
+  background-color: lighten(a.$light-primary-color, 6%);
+
+  .app-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+
+    .branding {
+      @include a.link(a.$dark-secondary-color, a.$dark-primary-color);
+      flex: 0 0 300px;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem;
+
+        h1 {
+          font-size: 2.6rem;
+        }
+
+        img {
+          width: 42px;
+          height: 42px;
+        }
+      }
+    }
+
+    nav.app-navigation {
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 2rem;
+
+      @include a.link(a.$dark-secondary-color, a.$dark-primary-color);
+
+      @include a.button(a.$dark-secondary-color, a.$dark-primary-color);
+
+      a {
+        font-size: a.$font-size-normal-text * 1.1;
+      }
+    }
+  }
+}
