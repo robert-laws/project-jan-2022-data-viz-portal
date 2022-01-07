@@ -29,14 +29,26 @@ export const PollQuestionList = ({ weekNumber, userId, profile }) => {
           (a) => a.questionNumber === answer.questionNumber
         );
         if (answerIndex === -1) {
-          updatedAnswers.push({ ...answer, userId: userId });
+          updatedAnswers.push({
+            ...answer,
+            userId: userId,
+            meetingDay: profile.meetingDay,
+            studentClass: profile.studentClass,
+            studentMajor: profile.studentMajor,
+          });
         } else {
-          updatedAnswers[answerIndex] = { ...answer, userId: userId };
+          updatedAnswers[answerIndex] = {
+            ...answer,
+            userId: userId,
+            meetingDay: profile.meetingDay,
+            studentClass: profile.studentClass,
+            studentMajor: profile.studentMajor,
+          };
         }
         return updatedAnswers;
       });
     },
-    [userId]
+    [userId, profile]
   );
 
   useEffect(() => {

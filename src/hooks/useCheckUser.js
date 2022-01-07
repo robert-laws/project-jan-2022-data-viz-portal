@@ -14,10 +14,14 @@ export const useCheckUser = () => {
     clearProfile,
     resetUpdateProfile,
   } = useUserContext();
-  const { results, loadResults, clearQuestions, clearResults, resetIsSaving } =
-    useQuestionContext();
-
-  console.log(results);
+  const {
+    results,
+    loadResults,
+    clearQuestions,
+    clearResults,
+    resetIsSaving,
+    clearPollsResults,
+  } = useQuestionContext();
 
   const navigate = useNavigate();
 
@@ -28,6 +32,7 @@ export const useCheckUser = () => {
       clearProfile();
       clearQuestions();
       clearResults();
+      clearPollsResults();
       navigate('/');
     }
   }, [
@@ -38,6 +43,7 @@ export const useCheckUser = () => {
     navigate,
     clearQuestions,
     clearResults,
+    clearPollsResults,
   ]);
 
   useEffect(() => {

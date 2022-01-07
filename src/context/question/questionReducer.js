@@ -8,6 +8,9 @@ import {
   CLEAR_QUESTIONS,
   CLEAR_RESULTS,
   RESET_IS_SAVING,
+  LOAD_ALL_POLLS,
+  POLLS_ERROR,
+  CLEAR_POLLS,
 } from '../types';
 
 const questionReducer = (state, action) => {
@@ -77,6 +80,29 @@ const questionReducer = (state, action) => {
       return {
         ...state,
         isSaving: true,
+      };
+
+    case LOAD_ALL_POLLS:
+      return {
+        ...state,
+        polls: action.payload,
+        pollsError: null,
+        isPollsLoading: false,
+      };
+
+    case POLLS_ERROR:
+      return {
+        ...state,
+        pollsError: action.payload,
+        isPollsLoading: false,
+      };
+
+    case CLEAR_POLLS:
+      return {
+        ...state,
+        polls: null,
+        pollsError: null,
+        isPollsLoading: true,
       };
 
     default:

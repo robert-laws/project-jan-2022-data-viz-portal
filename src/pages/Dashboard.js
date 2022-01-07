@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useCheckUser } from '../hooks/useCheckUser';
+import { useQuestionContext } from '../hooks/useQuestionContext';
 import { useBuildChartArray } from '../hooks/useBuildChartArray';
 import { BarChart, ColumnChart, LineChart } from '../components';
 
@@ -14,6 +16,17 @@ export const Dashboard = () => {
     'Scores'
   );
 
+  const { polls, loadAllPolls, isPollsLoading, pollsError, clearPollsResults } =
+    useQuestionContext();
+
+  useEffect(() => {
+    loadAllPolls();
+
+    return () => {
+      clearPollsResults();
+    };
+  }, [loadAllPolls, clearPollsResults]);
+
   if (isProfileLoading) {
     return <p>Loading...</p>;
   }
@@ -21,6 +34,13 @@ export const Dashboard = () => {
   return (
     <div>
       <h1>Charts</h1>
+      <h2>Polls</h2>
+      {isPollsLoading && !pollsError ? (
+        <p>Loading...</p>
+      ) : (
+        <div>{polls.length}</div>
+      )}
+      <h2>Quiz Results</h2>
       <div>
         <div>
           {googleChartData && (

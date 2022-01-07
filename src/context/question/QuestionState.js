@@ -17,6 +17,9 @@ import {
   CLEAR_QUESTIONS,
   CLEAR_RESULTS,
   RESET_IS_SAVING,
+  LOAD_ALL_POLLS,
+  POLLS_ERROR,
+  CLEAR_POLLS,
 } from '../types';
 import QuestionContext from './questionContext';
 import questionReducer from './questionReducer';
@@ -32,6 +35,9 @@ const QuestionState = ({ children }) => {
     questionsError: null,
     resultsError: null,
     isSaving: true,
+    polls: null,
+    isPollsLoading: true,
+    pollsError: null,
   };
 
   const [state, dispatch] = useReducer(questionReducer, initialState);
@@ -68,6 +74,32 @@ const QuestionState = ({ children }) => {
     },
     [dispatch]
   );
+
+  const loadAllPolls = useCallback(async () => {
+    const colRef = collection(db, 'results');
+    const q = query(colRef, where('category', '==', 'poll'));
+
+    try {
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) {
+        dispatch({
+          type: POLLS_ERROR,
+          payload: 'No poll results documents found',
+        });
+      } else {
+        let allResults = [];
+        querySnapshot.forEach((doc) => {
+          allResults.push({ id: doc.id, ...doc.data() });
+        });
+        dispatch({ type: LOAD_ALL_POLLS, payload: allResults });
+      }
+    } catch (error) {
+      dispatch({
+        type: POLLS_ERROR,
+        payload: `Database Error: ${error.message}`,
+      });
+    }
+  }, [dispatch]);
 
   const loadResults = useCallback(
     async (userId, category = 'quiz') => {
@@ -165,6 +197,10 @@ const QuestionState = ({ children }) => {
     dispatch({ type: CLEAR_RESULTS });
   }, [dispatch]);
 
+  const clearPollsResults = useCallback(() => {
+    dispatch({ type: CLEAR_POLLS });
+  }, [dispatch]);
+
   const resetIsSaving = useCallback(() => {
     dispatch({ type: RESET_IS_SAVING });
   }, [dispatch]);
@@ -179,6 +215,9 @@ const QuestionState = ({ children }) => {
         questionsError: state.questionsError,
         resultsError: state.resultsError,
         isSaving: state.isSaving,
+        polls: state.polls,
+        isPollsLoading: state.isPollsLoading,
+        pollsError: state.pollsError,
         loadQuestions,
         loadResults,
         loadResultsForCategoryAndWeekNumber,
@@ -186,6 +225,8 @@ const QuestionState = ({ children }) => {
         clearQuestions,
         clearResults,
         resetIsSaving,
+        loadAllPolls,
+        clearPollsResults,
       }}
     >
       {children}

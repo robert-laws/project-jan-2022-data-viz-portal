@@ -16,6 +16,11 @@ export const SAVING_ERROR = 'SAVING_ERROR';
 export const CLEAR_QUESTIONS = 'CLEAR_QUESTIONS';
 export const RESET_IS_SAVING = 'RESET_IS_SAVING';
 
+// POLLS
+export const LOAD_ALL_POLLS = 'LOAD_ALL_POLLS';
+export const POLLS_ERROR = 'POLLS_ERROR';
+export const CLEAR_POLLS = 'CLEAR_POLLS';
+
 // RESULTS
 export const LOAD_RESULTS = 'LOAD_RESULTS';
 export const RESULTS_ERROR = 'RESULTS_ERROR';
