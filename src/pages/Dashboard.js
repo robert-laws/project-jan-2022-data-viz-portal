@@ -4,6 +4,10 @@ import { BarChart, ColumnChart, LineChart } from '../components';
 
 export const Dashboard = () => {
   const { isProfileLoading } = useCheckUser();
+
+  // useBuildChartArray()
+  // depends on state in QuestionContext for 'results', which is loaded by useCheckUser()
+  // no additional queries - only data processing
   const [googleChartData, isResultsLoading, resultsError] = useBuildChartArray(
     'weekNumber',
     'Weeks',
