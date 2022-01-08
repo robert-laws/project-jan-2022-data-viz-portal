@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { PollCard } from './PollCard';
+import { Spinner } from './Spinner';
 import { pollSchedule } from '../data/pollSchedule';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 
@@ -16,7 +17,7 @@ export const PollCards = ({ completed, profilePage = false }) => {
   if (completed.length === 0) {
     return (
       <div className='centered'>
-        <p>Loading...</p>
+        <Spinner />
       </div>
     );
   }

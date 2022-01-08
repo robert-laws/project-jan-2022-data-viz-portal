@@ -1,5 +1,5 @@
-import React from 'react';
 import { Chart } from 'react-google-charts';
+import { Spinner } from './Spinner';
 
 export const LineChart = ({
   title,
@@ -26,7 +26,7 @@ export const LineChart = ({
   if (loading) {
     return (
       <div className='centered'>
-        <p>Loading...</p>
+        <Spinner />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useCheckUser } from '../hooks/useCheckUser';
-import { PollCards, PollQuestionList } from '../components';
+import { PollCards, PollQuestionList, Spinner } from '../components';
 
 export const Poll = () => {
   const { user, profile, isProfileLoading, profileError } = useCheckUser();
@@ -13,7 +13,7 @@ export const Poll = () => {
         <h2>Polls</h2>
         {isProfileLoading && !profileError ? (
           <div className='centered'>
-            <p>Loading...</p>
+            <Spinner />
           </div>
         ) : weekNumber && user ? (
           <PollQuestionList

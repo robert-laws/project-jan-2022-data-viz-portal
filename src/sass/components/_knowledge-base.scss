@@ -2,9 +2,16 @@
 
 .tab-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-flow: column wrap;
   gap: 2rem;
+
+  @include a.md {
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   button {
     flex: 1;

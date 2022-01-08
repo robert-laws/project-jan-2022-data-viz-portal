@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PollQuestion } from './PollQuestion';
+import { Spinner } from './Spinner';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 import { useUserContext } from '../hooks/useUserContext';
 import { Button } from './Button';
@@ -86,7 +87,7 @@ export const PollQuestionList = ({ weekNumber, userId, profile }) => {
   if (isQuestionsLoading) {
     return (
       <div className='centered'>
-        <p>Loading...</p>
+        <Spinner />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useCheckUser } from '../hooks/useCheckUser';
-import { QuizCards, QuizQuestionList } from '../components';
+import { QuizCards, QuizQuestionList, Spinner } from '../components';
 
 export const Quiz = () => {
   const { user, profile, isProfileLoading, profileError } = useCheckUser();
@@ -13,7 +13,7 @@ export const Quiz = () => {
         <h2>Quizzes</h2>
         {isProfileLoading && !profileError ? (
           <div className='centered'>
-            <p>Loading...</p>
+            <Spinner />
           </div>
         ) : weekNumber && user ? (
           <QuizQuestionList

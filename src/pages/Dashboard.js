@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { useCheckUser } from '../hooks/useCheckUser';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 import { useBuildChartArray } from '../hooks/useBuildChartArray';
-import { BarChart, ColumnChart, LineChart } from '../components';
+import { BarChart, ColumnChart, LineChart, Spinner } from '../components';
 
 const chartSelections = [
   { value: 'column', label: 'Column Chart' },
@@ -73,7 +73,7 @@ export const Dashboard = () => {
     return (
       <div className='app-content'>
         <div className='centered'>
-          <p>Loading...</p>
+          <Spinner />
         </div>
       </div>
     );
@@ -138,7 +138,7 @@ export const Dashboard = () => {
         {/* <div>
         <h2>Polls</h2>
         {isPollsLoading && !pollsError ? (
-          <p>Loading...</p>
+          <Spinner />
         ) : (
           <div>{polls.length}</div>
         )}

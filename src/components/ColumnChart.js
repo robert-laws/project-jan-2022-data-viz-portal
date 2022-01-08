@@ -1,4 +1,5 @@
 import { Chart } from 'react-google-charts';
+import { Spinner } from './Spinner';
 
 export const ColumnChart = ({
   title,
@@ -24,7 +25,7 @@ export const ColumnChart = ({
   if (loading) {
     return (
       <div className='centered'>
-        <p>Loading...</p>
+        <Spinner />
       </div>
     );
   }

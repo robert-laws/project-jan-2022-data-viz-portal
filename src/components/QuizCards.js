@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { QuizCard } from './QuizCard';
+import { Spinner } from './Spinner';
 import { quizSchedule } from '../data/quizSchedule';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 
@@ -16,7 +17,7 @@ export const QuizCards = ({ completed, profilePage = false }) => {
   if (completed.length === 0) {
     return (
       <div className='centered'>
-        <p>Loading...</p>
+        <Spinner />
       </div>
     );
   }

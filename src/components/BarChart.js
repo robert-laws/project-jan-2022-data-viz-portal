@@ -1,4 +1,5 @@
 import { Chart } from 'react-google-charts';
+import { Spinner } from './Spinner';
 
 export const BarChart = ({
   title,
@@ -26,7 +27,7 @@ export const BarChart = ({
   if (loading) {
     return (
       <div className='centered'>
-        <p>Loading...</p>
+        <Spinner />
       </div>
     );
   }
