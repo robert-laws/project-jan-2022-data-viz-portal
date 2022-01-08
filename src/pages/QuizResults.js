@@ -52,7 +52,7 @@ export const QuizResults = () => {
   return (
     <main className='section-app-content'>
       <div className='app-content'>
-        <h1>Quiz Results for Week {weekNumber}</h1>
+        <h2>Quiz Results for Week {weekNumber}</h2>
         <h2 className='quiz-score'>Your Quiz Score {quizScore}/10</h2>
         {questions &&
           questions.map((question, index) => (

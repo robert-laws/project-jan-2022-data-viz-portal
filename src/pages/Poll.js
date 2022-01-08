@@ -10,7 +10,7 @@ export const Poll = () => {
   return (
     <main className='section-app-content'>
       <div className='app-content'>
-        <h1>Polls</h1>
+        <h2>Polls</h2>
         {isProfileLoading && !profileError ? (
           <div className='centered'>
             <p>Loading...</p>

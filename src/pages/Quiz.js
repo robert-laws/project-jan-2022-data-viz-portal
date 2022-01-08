@@ -10,7 +10,7 @@ export const Quiz = () => {
   return (
     <main className='section-app-content'>
       <div className='app-content'>
-        <h1>Quizzes</h1>
+        <h2>Quizzes</h2>
         {isProfileLoading && !profileError ? (
           <div className='centered'>
             <p>Loading...</p>

@@ -82,7 +82,7 @@ export const Dashboard = () => {
   return (
     <main className='section-app-content'>
       <div className='app-content'>
-        <h1>Your Data Dashboard</h1>
+        <h2>Your Data Dashboard</h2>
         <div className='dashboard-quiz'>
           <div className='quiz-tools'>
             <h2>Your Quiz Average: {scoreText}</h2>

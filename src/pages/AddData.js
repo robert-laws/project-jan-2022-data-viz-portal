@@ -36,7 +36,7 @@ export const AddData = () => {
   return (
     <main className='section-app-content'>
       <div className='app-content'>
-        <h1>Add Data</h1>
+        <h2>Add Data</h2>
         {status.quizzes ? 'Quizzes added' : 'Quizzes in process...'}
         {<br />}
         {status.polls ? 'Polls added' : 'Polls in process...'}

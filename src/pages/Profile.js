@@ -31,7 +31,7 @@ export const Profile = () => {
           </div>
         ) : (
           <div className='profile-details'>
-            <h1>Your Profile</h1>
+            <h2>Your Profile</h2>
             <p>
               <strong>
                 {profile.firstName} {profile.lastName}

@@ -4,8 +4,9 @@
   @include a.base-layout;
   @include a.link;
 
-  & > h1 {
+  & > h2 {
     font-weight: bold;
+    font-size: 2rem;
     border-bottom: 1px solid lighten(a.$light-gray-color, 10%);
     padding-bottom: 2rem;
     margin-bottom: 2rem;
@@ -14,8 +15,9 @@
   .profile-details {
     padding: 0 0 2rem;
 
-    h1 {
+    h2 {
       font-weight: bold;
+      font-size: 2rem;
       border-bottom: 1px solid lighten(a.$light-gray-color, 10%);
       padding-bottom: 2rem;
       margin-bottom: 2rem;
@@ -32,6 +34,11 @@
 
   .centered {
     @include a.centered;
+
+    h2 {
+      font-weight: bold;
+      font-size: 2rem;
+    }
   }
 
   .dashboard-quiz {

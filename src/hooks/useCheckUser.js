@@ -14,14 +14,8 @@ export const useCheckUser = () => {
     clearProfile,
     resetUpdateProfile,
   } = useUserContext();
-  const {
-    results,
-    loadResults,
-    clearQuestions,
-    clearResults,
-    resetIsSaving,
-    clearPollsResults,
-  } = useQuestionContext();
+  const { clearQuestions, clearResults, resetIsSaving, clearPollsResults } =
+    useQuestionContext();
 
   const navigate = useNavigate();
 
