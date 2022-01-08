@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useCheckUser } from '../hooks/useCheckUser';
-import { QuizCards, PollCards } from '../components';
+import { QuizCards, PollCards, Spinner } from '../components';
 
 // TODO - split up content into tabbed sections
 // sections - profile, charts, etc.
@@ -27,12 +27,12 @@ export const Profile = () => {
       <div className='app-content'>
         {isProfileLoading && !profileError ? (
           <div className='centered'>
-            <p>Loading...</p>
+            <Spinner />
           </div>
         ) : (
           <div className='profile-details'>
             <h2>Your Profile</h2>
-            <p>
+            <p className='profile-name'>
               <strong>
                 {profile.firstName} {profile.lastName}
               </strong>

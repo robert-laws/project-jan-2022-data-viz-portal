@@ -6,7 +6,7 @@ footer {
   color: a.$white-color;
 
   .app-footer {
-    @include a.base-layout;
+    max-width: 1200px;
     min-height: 120px;
     display: flex;
     justify-content: center;

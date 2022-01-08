@@ -1,5 +1,6 @@
 // ui elements
 export { Button } from './Button';
+export { Spinner } from './Spinner';
 
 // ui regions
 export { Navigation } from './Navigation';

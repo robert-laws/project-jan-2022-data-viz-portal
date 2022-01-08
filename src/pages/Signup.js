@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { Button } from '../components';
 import { useSignup } from '../hooks/useSignup';
 import { studentClasses, studentMajors } from '../data';
+import { useUserContext } from '../hooks/useUserContext';
 
 export const Signup = () => {
+  const { clearProfile } = useUserContext();
+
   const { signupUser, signupError, isSignupPending } = useSignup();
 
   const [signup, setSignup] = useState({
@@ -24,6 +27,10 @@ export const Signup = () => {
     const { name, value } = e.target;
     setSignup({ ...signup, [name]: value });
   };
+
+  useEffect(() => {
+    clearProfile();
+  }, [clearProfile]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -25,7 +25,7 @@ export const BarChart = ({
 
   if (loading) {
     return (
-      <div>
+      <div className='centered'>
         <p>Loading...</p>
       </div>
     );
@@ -33,7 +33,7 @@ export const BarChart = ({
 
   if (error) {
     return (
-      <div>
+      <div className='centered'>
         <p>No Data to Display</p>
       </div>
     );

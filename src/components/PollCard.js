@@ -15,7 +15,9 @@ export const PollCard = ({ weekNumber, openDate, completed, profilePage }) => {
               className={completed ? 'completed' : ''}
             >
               {!completed && dateToday > quizOpenDate && (
-                <Link to={`/poll/${weekNumber}`}>Available</Link>
+                <Link className='invert' to={`/poll/${weekNumber}`}>
+                  Available
+                </Link>
               )}
               {!completed && dateToday <= quizOpenDate && (
                 <p className='list-date'>
@@ -42,7 +44,9 @@ export const PollCard = ({ weekNumber, openDate, completed, profilePage }) => {
         className={completed ? 'completed' : ''}
       >
         {!completed && dateToday > quizOpenDate && (
-          <Link to={`/poll/${weekNumber}`}>Available</Link>
+          <Link className='invert' to={`/poll/${weekNumber}`}>
+            Available
+          </Link>
         )}
         {!completed && dateToday <= quizOpenDate && (
           <p className='list-date'>

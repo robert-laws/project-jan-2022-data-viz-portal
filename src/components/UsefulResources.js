@@ -4,7 +4,7 @@ export const UsefulResources = () => {
       <h2>Useful Resources</h2>
       <div>
         <h3>Tableau</h3>
-        <div class='content'>
+        <div>
           <ul>
             <li>
               <a href='https://www.tableau.com'>Tableau.com</a>
@@ -24,7 +24,7 @@ export const UsefulResources = () => {
       </div>
       <div>
         <h3>E-Books from the Library and Online Learning Resources</h3>
-        <div class='content'>
+        <div>
           <ul>
             <li>
               <a href='https://wrlc-gu.primo.exlibrisgroup.com/permalink/01WRLC_GUNIV/13v2bp2/alma991037142451904111'>

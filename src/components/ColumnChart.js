@@ -23,7 +23,7 @@ export const ColumnChart = ({
 
   if (loading) {
     return (
-      <div>
+      <div className='centered'>
         <p>Loading...</p>
       </div>
     );
@@ -31,7 +31,7 @@ export const ColumnChart = ({
 
   if (error) {
     return (
-      <div>
+      <div className='centered'>
         <p>No Data to Display</p>
       </div>
     );

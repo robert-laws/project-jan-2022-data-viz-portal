@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLogin } from '../hooks/useLogin';
 import { Button } from '../components';
+import { useUserContext } from '../hooks/useUserContext';
 
 export const Login = () => {
+  const { clearProfile } = useUserContext();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,6 +15,10 @@ export const Login = () => {
     e.preventDefault();
     login(email, password);
   };
+
+  useEffect(() => {
+    clearProfile();
+  }, [clearProfile]);
 
   return (
     <section className='section-app-form'>

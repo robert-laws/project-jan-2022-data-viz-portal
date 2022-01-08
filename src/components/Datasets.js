@@ -2,7 +2,7 @@ export const Datasets = () => {
   return (
     <div>
       <h2>Datasets</h2>
-      <div class='content'>
+      <div>
         <h3>Recommended</h3>
         <ul>
           <li>
@@ -135,9 +135,7 @@ export const Datasets = () => {
             <a href='http://www.census.gov/'>U.S. Census Bureau</a>
           </li>
         </ul>
-        <h1 class='subtitle is-size-5-desktop is-size-5-mobile mt-5 mb-1 ml-2'>
-          GCC Datasets
-        </h1>
+        <h1>GCC Datasets</h1>
         <ul>
           <li>
             <a href='http://www.data.gov.bh/'>Bahrain Open Data Portal</a>
@@ -173,9 +171,7 @@ export const Datasets = () => {
             </a>
           </li>
         </ul>
-        <h1 class='subtitle is-size-5-desktop is-size-5-mobile mt-5 mb-1 ml-2'>
-          Economics - Developing Countries
-        </h1>
+        <h1>Economics - Developing Countries</h1>
         <ul>
           <li>
             <a href='https://guides.library.georgetown.edu/imfdata'>IMF Data</a>
@@ -196,9 +192,7 @@ export const Datasets = () => {
             </a>
           </li>
         </ul>
-        <h1 class='subtitle is-size-5-desktop is-size-5-mobile mt-5 mb-1 ml-2'>
-          Economics - Developed Countries
-        </h1>
+        <h1>Economics - Developed Countries</h1>
         <ul>
           <li>
             <a href='http://proxy.library.georgetown.edu/login?url=http://stats.oecd.org/WBOS/index.aspx'>
