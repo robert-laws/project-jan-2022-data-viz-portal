@@ -26,6 +26,7 @@
     box-shadow: a.$base-box-shadow;
 
     .list-topic {
+      font-weight: bold;
       padding-bottom: 2rem;
       margin-bottom: 1.25rem;
       border-bottom: 1px solid lighten(a.$light-gray-color, 10%);
@@ -53,6 +54,17 @@
     }
 
     @include a.link-button(a.$dark-primary-color);
+
+    .invert {
+      border-color: a.$dark-alt-color;
+      background-color: a.$white-color;
+      color: a.$dark-alt-color;
+
+      &:hover {
+        background-color: a.$dark-alt-color;
+        color: a.$white-color;
+      }
+    }
 
     .link-button {
       margin: 0 0 1.2rem 0;

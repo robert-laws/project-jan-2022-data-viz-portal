@@ -19,7 +19,9 @@ export const QuizCard = ({
             <p className='list-topic'>{topic}</p>
             <div className={completed ? 'completed' : ''}>
               {!completed && dateToday > quizOpenDate && (
-                <Link to={`/quiz/${weekNumber}`}>Available</Link>
+                <Link className='invert' to={`/quiz/${weekNumber}`}>
+                  Available
+                </Link>
               )}
               {!completed && dateToday <= quizOpenDate && (
                 <p>
@@ -47,7 +49,9 @@ export const QuizCard = ({
       <p className='list-topic'>{topic}</p>
       <div className={completed ? 'completed' : ''}>
         {!completed && dateToday > quizOpenDate && (
-          <Link to={`/quiz/${weekNumber}`}>Available</Link>
+          <Link className='invert' to={`/quiz/${weekNumber}`}>
+            Available
+          </Link>
         )}
         {!completed && dateToday <= quizOpenDate && (
           <p>
