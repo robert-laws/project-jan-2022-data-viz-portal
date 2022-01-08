@@ -17,7 +17,7 @@ export const pollSchedule = [
   {
     id: 4,
     weekNumber: '4',
-    openDate: '2022-02-30T00:00:00.00',
+    openDate: '2022-01-30T00:00:00.00',
   },
   {
     id: 5,
