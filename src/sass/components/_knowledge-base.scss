@@ -1,0 +1,20 @@
+@use '../abstracts' as a;
+
+.tab-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+
+  button {
+    flex: 1;
+  }
+
+  @include a.button(a.$dark-primary-color, a.$dark-secondary-color);
+
+  .button {
+    &.active {
+      background-color: a.$dark-secondary-color;
+    }
+  }
+}
