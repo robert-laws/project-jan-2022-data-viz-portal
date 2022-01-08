@@ -10,7 +10,6 @@ import {
   Quiz,
   QuizResults,
   Signup,
-  AddData,
   Dashboard,
 } from './pages';
 import { useAuthContext } from './hooks/useAuthContext';
@@ -35,7 +34,7 @@ function App() {
             </Route>
             <Route path='/quiz/results/:weekNumber' element={<QuizResults />} />
             <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/add' element={<AddData />} />
+            {/* <Route path='/add' element={<AddData />} /> */}
             <Route
               path='/login'
               element={
