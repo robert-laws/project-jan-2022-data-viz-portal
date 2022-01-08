@@ -8,24 +8,26 @@ export const Poll = () => {
   const { weekNumber } = useParams();
 
   return (
-    <div className='app-content'>
-      <h1>Polls</h1>
-      {isProfileLoading && !profileError ? (
-        <div className='centered'>
-          <p>Loading...</p>
-        </div>
-      ) : weekNumber && user ? (
-        <PollQuestionList
-          weekNumber={weekNumber}
-          userId={user.uid}
-          profile={profile}
-        />
-      ) : (
-        <div className='list'>
-          <PollCards completed={profile.poll} />
-        </div>
-      )}
-      {profileError && <p>{profileError}</p>}
-    </div>
+    <main className='section-app-content'>
+      <div className='app-content'>
+        <h1>Polls</h1>
+        {isProfileLoading && !profileError ? (
+          <div className='centered'>
+            <p>Loading...</p>
+          </div>
+        ) : weekNumber && user ? (
+          <PollQuestionList
+            weekNumber={weekNumber}
+            userId={user.uid}
+            profile={profile}
+          />
+        ) : (
+          <div className='list'>
+            <PollCards completed={profile.poll} />
+          </div>
+        )}
+        {profileError && <p>{profileError}</p>}
+      </div>
+    </main>
   );
 };

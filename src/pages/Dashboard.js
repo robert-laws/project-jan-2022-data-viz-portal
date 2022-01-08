@@ -71,63 +71,64 @@ export const Dashboard = () => {
   }
 
   return (
-    <div className='app-content'>
-      <h1>Your Data Dashboard</h1>
-      <div className='dashboard-quiz'>
-        <div className='quiz-tools'>
-          <h2>
-            You Quiz Average: <strong>{scoreText}</strong>
-          </h2>
-          <div className='quiz-select'>
-            <label>
-              <span>Change Quiz Scores Visualization Type</span>
-              <Select
-                options={chartSelections}
-                onChange={(option) => setChartSelection(option.value)}
+    <main className='section-app-content'>
+      <div className='app-content'>
+        <h1>Your Data Dashboard</h1>
+        <div className='dashboard-quiz'>
+          <div className='quiz-tools'>
+            <h2>
+              You Quiz Average: <strong>{scoreText}</strong>
+            </h2>
+            <div className='quiz-select'>
+              <label>
+                <span>Change Quiz Scores Visualization Type</span>
+                <Select
+                  options={chartSelections}
+                  onChange={(option) => setChartSelection(option.value)}
+                />
+              </label>
+            </div>
+          </div>
+          {googleChartData && chartSelection === 'column' && (
+            <div className='quiz-chart'>
+              <ColumnChart
+                title='Quiz Results'
+                chartData={googleChartData}
+                vAxisTitle='Score'
+                hAxisTitle='Weeks'
+                loading={isResultsLoading}
+                error={resultsError}
               />
-            </label>
-          </div>
+            </div>
+          )}
+
+          {googleChartData && chartSelection === 'bar' && (
+            <div className='quiz-chart'>
+              <BarChart
+                title='Quiz Results'
+                chartData={googleChartData}
+                vAxisTitle='Weeks'
+                hAxisTitle='Score'
+                loading={isResultsLoading}
+                error={resultsError}
+              />
+            </div>
+          )}
+
+          {googleChartData && chartSelection === 'line' && (
+            <div className='quiz-chart'>
+              <LineChart
+                title='Quiz Results'
+                chartData={googleChartData}
+                vAxisTitle='Weeks'
+                hAxisTitle='Score'
+                loading={isResultsLoading}
+                error={resultsError}
+              />
+            </div>
+          )}
         </div>
-        {googleChartData && chartSelection === 'column' && (
-          <div className='quiz-chart'>
-            <ColumnChart
-              title='Quiz Results'
-              chartData={googleChartData}
-              vAxisTitle='Score'
-              hAxisTitle='Weeks'
-              loading={isResultsLoading}
-              error={resultsError}
-            />
-          </div>
-        )}
-
-        {googleChartData && chartSelection === 'bar' && (
-          <div className='quiz-chart'>
-            <BarChart
-              title='Quiz Results'
-              chartData={googleChartData}
-              vAxisTitle='Weeks'
-              hAxisTitle='Score'
-              loading={isResultsLoading}
-              error={resultsError}
-            />
-          </div>
-        )}
-
-        {googleChartData && chartSelection === 'line' && (
-          <div className='quiz-chart'>
-            <LineChart
-              title='Quiz Results'
-              chartData={googleChartData}
-              vAxisTitle='Weeks'
-              hAxisTitle='Score'
-              loading={isResultsLoading}
-              error={resultsError}
-            />
-          </div>
-        )}
-      </div>
-      {/* <div>
+        {/* <div>
         <h2>Polls</h2>
         {isPollsLoading && !pollsError ? (
           <p>Loading...</p>
@@ -135,6 +136,7 @@ export const Dashboard = () => {
           <div>{polls.length}</div>
         )}
       </div> */}
-    </div>
+      </div>
+    </main>
   );
 };

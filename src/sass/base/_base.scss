@@ -33,3 +33,23 @@ p {
   width: 20px;
   height: 20px;
 }
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+
+  header {
+    flex: 0;
+  }
+
+  .section-app-content,
+  .section-app-form {
+    flex: 1;
+  }
+
+  footer {
+    flex: 0;
+  }
+}

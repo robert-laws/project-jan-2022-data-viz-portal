@@ -26,8 +26,6 @@ export const QuizResults = () => {
   }, [loadQuestions, weekNumber]);
 
   useEffect(() => {
-    clearResults();
-    clearQuestions();
     return () => {
       clearResults();
       clearQuestions();
@@ -35,48 +33,61 @@ export const QuizResults = () => {
   }, [clearResults, clearQuestions]);
 
   return (
-    <div>
-      <h2>Quiz Results for Week {weekNumber}</h2>
-      {questions &&
-        questions.map((question) => (
-          <div key={question.id}>
-            <p>{question.questionText}</p>
-            <ul>
-              {question.answers.map((answer) => {
-                if (answer === question.correctAnswer) {
-                  if (
-                    results.find(
-                      (answer) =>
-                        answer.questionNumber ===
-                        question.questionNumber.toString()
-                    ).answer === answer
-                  ) {
-                    return (
-                      <li key={answer}>{answer} - Correct - Your Answer</li>
-                    );
+    <main className='section-app-content'>
+      <div className='app-content'>
+        <h1>Quiz Results for Week {weekNumber}</h1>
+        {questions &&
+          questions.map((question, index) => (
+            <div className='app-form' key={question.id}>
+              <p>Question # {index + 1}</p>
+              <p>
+                <strong>{question.questionText}</strong>
+              </p>
+              <ul className='quiz-results-list'>
+                {question.answers.map((answer) => {
+                  if (answer === question.correctAnswer) {
+                    if (
+                      results.find(
+                        (answer) =>
+                          answer.questionNumber ===
+                          question.questionNumber.toString()
+                      ).answer === answer
+                    ) {
+                      return (
+                        <li className='correct' key={answer}>
+                          {answer} - Correct - Your Answer
+                        </li>
+                      );
+                    } else {
+                      return (
+                        <li className='correct' key={answer}>
+                          {answer} - Correct
+                        </li>
+                      );
+                    }
                   } else {
-                    return <li key={answer}>{answer} - Correct</li>;
+                    if (
+                      results.find(
+                        (answer) =>
+                          answer.questionNumber ===
+                          question.questionNumber.toString()
+                      ).answer === answer
+                    ) {
+                      return (
+                        <li className='incorrect' key={answer}>
+                          {answer} - Incorrect - Your Answer
+                        </li>
+                      );
+                    } else {
+                      return <li key={answer}>{answer} - Incorrect</li>;
+                    }
                   }
-                } else {
-                  if (
-                    results.find(
-                      (answer) =>
-                        answer.questionNumber ===
-                        question.questionNumber.toString()
-                    ).answer === answer
-                  ) {
-                    return (
-                      <li key={answer}>{answer} - Incorrect - Your Answer</li>
-                    );
-                  } else {
-                    return <li key={answer}>{answer} - Incorrect</li>;
-                  }
-                }
-              })}
-            </ul>
-          </div>
-        ))}
-    </div>
+                })}
+              </ul>
+            </div>
+          ))}
+      </div>
+    </main>
   );
 
   // get results

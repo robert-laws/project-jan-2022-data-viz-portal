@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useCheckUser } from '../hooks/useCheckUser';
 import { QuizCards, PollCards } from '../components';
 
@@ -22,37 +23,41 @@ export const Profile = () => {
   const { user, profile, isProfileLoading, profileError } = useCheckUser();
 
   return (
-    <div className='app-content'>
-      {isProfileLoading && !profileError ? (
-        <div className='centered'>
-          <p>Loading...</p>
-        </div>
-      ) : (
-        <div>
-          <p>
-            <strong>
-              {profile.firstName} {profile.lastName}
-            </strong>
-          </p>
-          {user && <p>email: {user.email}</p>}
-          <p>class: {profile.studentClass}</p>
-          <p>major: {profile.studentMajor.toUpperCase()}</p>
-          <p>meeting day: {profile.meetingDay}</p>
-        </div>
-      )}
-      {profileError && <p>{profileError}</p>}
-      {profile && !profileError && (
-        <div className='profile-tasks'>
-          <h4>Your Available Quizzes</h4>
-          <div className='list top-list' ref={quizCardsRef}>
-            <QuizCards completed={profile.quiz} profilePage={true} />
+    <main className='section-app-content'>
+      <div className='app-content'>
+        {isProfileLoading && !profileError ? (
+          <div className='centered'>
+            <p>Loading...</p>
           </div>
-          <h4>Your Available Polls</h4>
-          <div className='list' ref={pollCardsRef}>
-            <PollCards completed={profile.poll} profilePage={true} />
+        ) : (
+          <div>
+            <p>
+              <strong>
+                {profile.firstName} {profile.lastName}
+              </strong>
+            </p>
+            {user && <p>email: {user.email}</p>}
+            <p>class: {profile.studentClass}</p>
+            <p>major: {profile.studentMajor.toUpperCase()}</p>
+            <p>meeting day: {profile.meetingDay}</p>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+        {profileError && <p>{profileError}</p>}
+        {profile && !profileError && (
+          <div className='profile-tasks'>
+            <h4>Your Available Quizzes</h4>
+            <Link to='/quiz'>View Your Quiz Results and Schedule</Link>
+            <div className='list top-list' ref={quizCardsRef}>
+              <QuizCards completed={profile.quiz} profilePage={true} />
+            </div>
+            <h4>Your Available Polls</h4>
+            <Link to='/poll'>View Polls Schedule</Link>
+            <div className='list' ref={pollCardsRef}>
+              <PollCards completed={profile.poll} profilePage={true} />
+            </div>
+          </div>
+        )}
+      </div>
+    </main>
   );
 };

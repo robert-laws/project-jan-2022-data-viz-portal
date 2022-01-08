@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navigation, PrivateRoute } from './components';
+import { Footer, Navigation, PrivateRoute } from './components';
 import {
   Home,
   KnowledgeBase,
@@ -54,6 +54,7 @@ function App() {
             />
             <Route path='*' element={<NotFound />} />
           </Routes>
+          <Footer />
         </Router>
       )}
     </div>

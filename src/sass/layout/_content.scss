@@ -2,6 +2,7 @@
 
 .app-content {
   @include a.base-layout;
+  @include a.link;
 
   & > h1 {
     font-weight: bold;

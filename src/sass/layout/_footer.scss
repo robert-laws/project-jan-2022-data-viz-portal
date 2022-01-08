@@ -1,0 +1,20 @@
+@use '../abstracts' as a;
+
+footer {
+  padding: 1rem;
+  background-color: a.$dark-primary-color;
+  color: a.$white-color;
+
+  .app-footer {
+    @include a.base-layout;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h4 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+}

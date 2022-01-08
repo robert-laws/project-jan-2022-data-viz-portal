@@ -3,6 +3,7 @@ export { Button } from './Button';
 
 // ui regions
 export { Navigation } from './Navigation';
+export { Footer } from './Footer';
 
 // helpers
 export { PrivateRoute } from './PrivateRoute';

@@ -34,15 +34,17 @@ export const AddData = () => {
   };
 
   return (
-    <div>
-      <h1>Add Data</h1>
-      {status.quizzes ? 'Quizzes added' : 'Quizzes in process...'}
-      {<br />}
-      {status.polls ? 'Polls added' : 'Polls in process...'}
-      {<br />}
-      {status.questions ? 'Questions added' : 'Questions in process...'}
-      {<br />}
-      <button onClick={handleClick}>Add Data</button>
-    </div>
+    <main className='section-app-content'>
+      <div className='app-content'>
+        <h1>Add Data</h1>
+        {status.quizzes ? 'Quizzes added' : 'Quizzes in process...'}
+        {<br />}
+        {status.polls ? 'Polls added' : 'Polls in process...'}
+        {<br />}
+        {status.questions ? 'Questions added' : 'Questions in process...'}
+        {<br />}
+        <button onClick={handleClick}>Add Data</button>
+      </div>
+    </main>
   );
 };

@@ -14,7 +14,7 @@
 
   .list-card {
     width: 372px;
-    padding: 1.5rem 2rem 0.5rem;
+    padding: 1.5rem 2rem;
     border: 1px solid a.$light-gray-color;
     border-radius: a.$base-border-radius;
     background-color: lighten(a.$light-gray-color, 17%);
@@ -52,5 +52,18 @@
     .link-button {
       margin: 0 0 1.2rem 0;
     }
+  }
+}
+
+.quiz-results-list {
+  padding-left: 2rem;
+  list-style-type: disc;
+
+  .correct {
+    color: green;
+  }
+
+  .incorrect {
+    color: red;
   }
 }
