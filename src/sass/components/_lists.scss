@@ -12,6 +12,11 @@
     justify-content: flex-start;
   }
 
+  & > p {
+    margin-left: 2rem;
+    font-style: italic;
+  }
+
   .list-card {
     width: 372px;
     padding: 1.5rem 2rem;

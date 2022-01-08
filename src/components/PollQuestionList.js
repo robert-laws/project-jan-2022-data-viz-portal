@@ -90,7 +90,7 @@ export const PollQuestionList = ({ weekNumber, userId, profile }) => {
       ))}
       <div className='form-submit'>
         <Button isLoading={isSubmitPending} styleClass='secondary'>
-          Submit Quiz
+          Submit Poll
         </Button>
         {questionsError && <p>{questionsError}</p>}
       </div>

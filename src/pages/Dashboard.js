@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useCheckUser } from '../hooks/useCheckUser';
-// import { useQuestionContext } from '../hooks/useQuestionContext';
+import { useQuestionContext } from '../hooks/useQuestionContext';
 import { useBuildChartArray } from '../hooks/useBuildChartArray';
 import { BarChart, ColumnChart, LineChart } from '../components';
 
@@ -14,7 +14,14 @@ const chartSelections = [
 export const Dashboard = () => {
   const [chartSelection, setChartSelection] = useState('column');
   const [scoreText, setScoreText] = useState('Loading');
-  const { isProfileLoading } = useCheckUser();
+  const { user, isProfileLoading } = useCheckUser();
+  const { loadResults } = useQuestionContext();
+
+  useEffect(() => {
+    if (user) {
+      loadResults(user.uid);
+    }
+  }, [user, loadResults]);
 
   // useBuildChartArray()
   // depends on state in QuestionContext for 'results', which is loaded by useCheckUser()
@@ -47,7 +54,9 @@ export const Dashboard = () => {
       }
 
       const scoreAverage = score / quizzesTaken;
-      average = scoreAverage;
+      average = `${scoreAverage * 10}% ∙ ${score} points out of ${
+        quizzesTaken * 10
+      } Total`;
     } else {
       average = '0 Quizzes Taken';
     }
@@ -76,9 +85,7 @@ export const Dashboard = () => {
         <h1>Your Data Dashboard</h1>
         <div className='dashboard-quiz'>
           <div className='quiz-tools'>
-            <h2>
-              You Quiz Average: <strong>{scoreText}</strong>
-            </h2>
+            <h2>Your Quiz Average: {scoreText}</h2>
             <div className='quiz-select'>
               <label>
                 <span>Change Quiz Scores Visualization Type</span>

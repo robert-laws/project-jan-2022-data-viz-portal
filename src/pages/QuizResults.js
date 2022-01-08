@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCheckUser } from '../hooks/useCheckUser';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 
 export const QuizResults = () => {
+  const [quizScore, setQuizScore] = useState(0);
   const { weekNumber } = useParams();
   const { user } = useCheckUser();
   const {
@@ -26,6 +27,22 @@ export const QuizResults = () => {
   }, [loadQuestions, weekNumber]);
 
   useEffect(() => {
+    // if (results) {
+    //   console.log(results);
+    // }
+    if (results) {
+      const score = results.reduce((acc, result) => {
+        if (result.correct === true) {
+          return acc + 1;
+        } else {
+          return acc;
+        }
+      }, 0);
+      setQuizScore(score);
+    }
+  }, [results]);
+
+  useEffect(() => {
     return () => {
       clearResults();
       clearQuestions();
@@ -36,6 +53,7 @@ export const QuizResults = () => {
     <main className='section-app-content'>
       <div className='app-content'>
         <h1>Quiz Results for Week {weekNumber}</h1>
+        <h2 className='quiz-score'>Your Quiz Score {quizScore}/10</h2>
         {questions &&
           questions.map((question, index) => (
             <div className='app-form' key={question.id}>

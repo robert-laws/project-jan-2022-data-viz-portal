@@ -30,16 +30,27 @@ export const Profile = () => {
             <p>Loading...</p>
           </div>
         ) : (
-          <div>
+          <div className='profile-details'>
+            <h1>Your Profile</h1>
             <p>
               <strong>
                 {profile.firstName} {profile.lastName}
               </strong>
             </p>
-            {user && <p>email: {user.email}</p>}
-            <p>class: {profile.studentClass}</p>
-            <p>major: {profile.studentMajor.toUpperCase()}</p>
-            <p>meeting day: {profile.meetingDay}</p>
+            {user && (
+              <p className='profile-item'>
+                <strong>email</strong>: {user.email}
+              </p>
+            )}
+            <p className='profile-item'>
+              <strong>class</strong>: {profile.studentClass}
+            </p>
+            <p className='profile-item'>
+              <strong>major</strong>: {profile.studentMajor.toUpperCase()}
+            </p>
+            <p className='profile-item'>
+              <strong>meeting day</strong>: {profile.meetingDay}
+            </p>
           </div>
         )}
         {profileError && <p>{profileError}</p>}
@@ -52,7 +63,7 @@ export const Profile = () => {
             </div>
             <h4>Your Available Polls</h4>
             <Link to='/poll'>View Polls Schedule</Link>
-            <div className='list' ref={pollCardsRef}>
+            <div className='list bottom-list' ref={pollCardsRef}>
               <PollCards completed={profile.poll} profilePage={true} />
             </div>
           </div>

@@ -22,7 +22,11 @@ export const PollCard = ({ weekNumber, openDate, completed, profilePage }) => {
                   <em>Upcoming on {quizOpenDate.toDateString()}</em>
                 </p>
               )}
-              {completed && 'Completed'}
+              {completed && (
+                <p className='list-date'>
+                  <strong>Completed</strong>
+                </p>
+              )}
             </div>
           </div>
         )}
@@ -45,7 +49,11 @@ export const PollCard = ({ weekNumber, openDate, completed, profilePage }) => {
             <em>Upcoming on {quizOpenDate.toDateString()}</em>
           </p>
         )}
-        {completed && 'Completed'}
+        {completed && (
+          <p className='list-date'>
+            <strong>Completed</strong>
+          </p>
+        )}
       </div>
     </div>
   );

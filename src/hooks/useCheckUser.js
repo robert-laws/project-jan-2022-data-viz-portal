@@ -51,12 +51,12 @@ export const useCheckUser = () => {
     resetIsSaving();
   }, [resetUpdateProfile, resetIsSaving]);
 
-  useEffect(() => {
-    if (user && !results) {
-      loadResults(user.uid);
-      console.log('load results....');
-    }
-  }, [user, results, loadResults]);
+  // useEffect(() => {
+  //   if (user && !results) {
+  //     loadResults(user.uid);
+  //     console.log('load results....');
+  //   }
+  // }, [user, results, loadResults]);
 
   return { user, profile, isProfileLoading, profileError };
 };

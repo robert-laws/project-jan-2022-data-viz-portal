@@ -8,6 +8,25 @@
     font-weight: bold;
   }
 
+  .profile-details {
+    padding: 0 0 2rem;
+
+    h1 {
+      font-weight: bold;
+      border-bottom: 1px solid lighten(a.$light-gray-color, 10%);
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .profile-item {
+    margin-left: 2rem;
+  }
+
+  .quiz-score {
+    font-size: 1.8rem;
+  }
+
   .centered {
     @include a.centered;
   }
@@ -20,7 +39,7 @@
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.5rem;
       background-color: a.$dark-secondary-color;
       color: a.$white-color;
       border-radius: a.$base-border-radius;
@@ -34,7 +53,7 @@
 
       h2 {
         text-align: center;
-        flex: 0 0 380px;
+        flex: 0 0 450px;
         font-size: 1.8rem;
 
         @include a.md {
@@ -71,12 +90,16 @@
     margin-top: 2rem;
 
     h4 {
-      font-size: a.$font-size-normal-text * 1.2;
+      font-size: a.$font-size-normal-text * 1.1;
     }
 
     .top-list {
       border-bottom: 1px solid lighten(a.$light-gray-color, 10%);
       margin-bottom: 2rem;
+    }
+
+    .bottom-list {
+      border-bottom: 1px solid lighten(a.$light-gray-color, 10%);
     }
   }
 }
