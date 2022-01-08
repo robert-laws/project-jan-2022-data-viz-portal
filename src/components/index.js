@@ -24,3 +24,9 @@ export { PollQuestion } from './PollQuestion';
 export { ColumnChart } from './ColumnChart';
 export { BarChart } from './BarChart';
 export { LineChart } from './LineChart';
+
+// Knowledge Base
+export { UsefulResources } from './UsefulResources';
+export { Datasets } from './Datasets';
+export { InstructionalVideos } from './InstructionalVideos';
+export { EmbeddedTableau } from './EmbeddedTableau';

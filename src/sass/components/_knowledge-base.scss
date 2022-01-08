@@ -18,3 +18,32 @@
     }
   }
 }
+
+.tab-content {
+  margin: 2rem 0 4rem;
+
+  h2 {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  ul {
+    list-style-type: disc;
+    margin: 0.5rem 2.5rem 2rem;
+  }
+
+  .video-flex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    gap: 1.2rem;
+
+    & > div {
+      flex: 0 0 370px;
+    }
+  }
+}

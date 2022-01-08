@@ -1,4 +1,10 @@
 import { useState } from 'react';
+import {
+  UsefulResources,
+  Datasets,
+  InstructionalVideos,
+  EmbeddedTableau,
+} from '../components';
 
 export const KnowledgeBase = () => {
   const [tabSelected, setTabSelected] = useState(1);
@@ -31,6 +37,12 @@ export const KnowledgeBase = () => {
           >
             Embedded Tableau
           </button>
+        </div>
+        <div className='tab-content'>
+          {tabSelected === 1 && <UsefulResources />}
+          {tabSelected === 2 && <Datasets />}
+          {tabSelected === 3 && <InstructionalVideos />}
+          {tabSelected === 4 && <EmbeddedTableau />}
         </div>
       </div>
     </main>
