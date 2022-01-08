@@ -48,7 +48,7 @@ export const Login = () => {
           <Button isLoading={isLoginPending} styleClass='secondary'>
             Login
           </Button>
-          {loginError && <span className='error-text'>{loginError}</span>}
+          {loginError && <p className='error-text'>{loginError}</p>}
         </div>
       </form>
     </section>

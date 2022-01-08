@@ -135,8 +135,8 @@
     margin-top: 1rem;
     min-height: 7rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 2rem;
 
     @include a.button(a.$dark-tertiary-color, a.$dark-primary-color);
 

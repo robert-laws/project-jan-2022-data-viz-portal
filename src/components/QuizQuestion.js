@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 export const QuizQuestion = ({
   number,
+  error,
   questionNumber,
   weekNumber,
   questionText,
@@ -37,7 +38,13 @@ export const QuizQuestion = ({
   };
 
   return (
-    <div className='app-form'>
+    <div
+      className='app-form'
+      style={{
+        borderColor: error ? 'red' : '#CCC',
+        borderWidth: error ? '2px' : '1px',
+      }}
+    >
       <p>
         <strong>Question #{number}</strong>
       </p>

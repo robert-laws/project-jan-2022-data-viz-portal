@@ -155,8 +155,8 @@ export const Signup = () => {
           <Button isLoading={isSignupPending} styleClass='secondary'>
             Signup
           </Button>
-          {formError && <span className='error-text'>{formError}</span>}
-          {signupError && <span className='error-text'>{signupError}</span>}
+          {formError && <p className='error-text'>{formError}</p>}
+          {signupError && <p className='error-text'>{signupError}</p>}
         </div>
       </form>
     </section>

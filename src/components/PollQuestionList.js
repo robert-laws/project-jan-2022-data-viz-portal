@@ -11,6 +11,7 @@ export const PollQuestionList = ({ weekNumber, userId, profile }) => {
 
   const [isSubmitPending, setIsSubmitPending] = useState(false);
   const [pollAnswers, setPollAnswers] = useState([]);
+  const [pollErrors, setPollErrors] = useState(['1', '2']);
 
   const navigate = useNavigate();
 
@@ -59,14 +60,27 @@ export const PollQuestionList = ({ weekNumber, userId, profile }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitPending(true);
 
-    let pollCompletedList = profile.poll;
-    const completedIndex = weekNumber - 1;
-    pollCompletedList.splice(completedIndex, 1, true);
+    if (pollAnswers.length === 2) {
+      setPollErrors(['1', '2']);
 
-    saveResults(pollAnswers);
-    updateUserCompletedList('poll', userId, pollCompletedList);
+      setIsSubmitPending(true);
+
+      let pollCompletedList = profile.poll;
+      const completedIndex = weekNumber - 1;
+      pollCompletedList.splice(completedIndex, 1, true);
+
+      saveResults(pollAnswers);
+      updateUserCompletedList('poll', userId, pollCompletedList);
+    } else if (pollAnswers.length === 0) {
+      setPollErrors([]);
+    } else {
+      let errorList = [];
+      pollAnswers.forEach((answer) => {
+        errorList.push(answer.questionNumber.toString());
+      });
+      setPollErrors(errorList);
+    }
   };
 
   if (isQuestionsLoading) {
@@ -82,6 +96,7 @@ export const PollQuestionList = ({ weekNumber, userId, profile }) => {
       <h2>Poll for Week {weekNumber}</h2>
       {questions.map((question, index) => (
         <PollQuestion
+          error={!pollErrors.includes(question.questionNumber.toString())}
           key={question.id}
           number={index + 1}
           {...question}
@@ -92,7 +107,10 @@ export const PollQuestionList = ({ weekNumber, userId, profile }) => {
         <Button isLoading={isSubmitPending} styleClass='secondary'>
           Submit Poll
         </Button>
-        {questionsError && <p>{questionsError}</p>}
+        {pollErrors.length !== 2 && (
+          <p className='error-text'>Please answer all the questions</p>
+        )}
+        {questionsError && <p className='error-text'>{questionsError}</p>}
       </div>
     </form>
   );
