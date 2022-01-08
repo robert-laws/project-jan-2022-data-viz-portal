@@ -14,7 +14,11 @@ export const QuizCards = ({ completed, profilePage = false }) => {
   }, [clearQuestions]);
 
   if (completed.length === 0) {
-    return <p>Loading...</p>;
+    return (
+      <div className='centered'>
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   return quizSchedule.map((quiz, index) => (

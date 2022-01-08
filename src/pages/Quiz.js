@@ -8,10 +8,12 @@ export const Quiz = () => {
   const { weekNumber } = useParams();
 
   return (
-    <div>
+    <div className='app-content'>
       <h1>Quizzes</h1>
       {isProfileLoading && !profileError ? (
-        <p>Loading...</p>
+        <div className='centered'>
+          <p>Loading...</p>
+        </div>
       ) : weekNumber && user ? (
         <QuizQuestionList
           weekNumber={weekNumber}
@@ -19,7 +21,9 @@ export const Quiz = () => {
           profile={profile}
         />
       ) : (
-        <QuizCards completed={profile.quiz} />
+        <div className='list'>
+          <QuizCards completed={profile.quiz} />
+        </div>
       )}
       {profileError && <p>{profileError}</p>}
     </div>

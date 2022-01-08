@@ -1,0 +1,81 @@
+@use '../abstracts' as a;
+
+.app-content {
+  @include a.base-layout;
+
+  & > h1 {
+    font-weight: bold;
+  }
+
+  .centered {
+    @include a.centered;
+  }
+
+  .dashboard-quiz {
+    margin: 1rem 0;
+    min-height: 450px;
+
+    .quiz-tools {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      gap: 1rem;
+      background-color: a.$dark-secondary-color;
+      color: a.$white-color;
+      border-radius: a.$base-border-radius;
+      padding: 1.25rem 1.5rem;
+
+      @include a.md {
+        align-items: center;
+        justify-content: space-between;
+        gap: 0;
+      }
+
+      h2 {
+        text-align: center;
+        flex: 0 0 380px;
+        font-size: 1.8rem;
+
+        @include a.md {
+          text-align: left;
+        }
+      }
+
+      .quiz-select {
+        label {
+          color: a.$black-color;
+        }
+        span {
+          color: a.$white-color;
+          font-size: 1.4rem;
+        }
+      }
+    }
+
+    .quiz-chart {
+      border-radius: a.$base-border-radius;
+      border: 1px solid a.$light-gray-color;
+      padding: 1rem;
+      margin: 2rem 0;
+
+      h3 {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .profile-tasks {
+    border-top: 1px solid lighten(a.$light-gray-color, 10%);
+    padding-top: 2rem;
+    margin-top: 2rem;
+
+    h4 {
+      font-size: a.$font-size-normal-text * 1.2;
+    }
+
+    .top-list {
+      border-bottom: 1px solid lighten(a.$light-gray-color, 10%);
+      margin-bottom: 2rem;
+    }
+  }
+}

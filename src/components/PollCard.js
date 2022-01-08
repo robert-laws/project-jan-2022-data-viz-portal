@@ -8,13 +8,20 @@ export const PollCard = ({ weekNumber, openDate, completed, profilePage }) => {
     return (
       <>
         {!completed && dateToday > quizOpenDate && (
-          <div className='poll-card'>
+          <div className='list-card'>
             <h4>{`Poll for Week # ${weekNumber}`}</h4>
-            <div className={completed ? 'completed' : ''}>
+            <div
+              style={{ marginTop: '2rem', marginBottom: '2rem' }}
+              className={completed ? 'completed' : ''}
+            >
               {!completed && dateToday > quizOpenDate && (
                 <Link to={`/poll/${weekNumber}`}>Available</Link>
               )}
-              {!completed && dateToday <= quizOpenDate && 'Upcoming'}
+              {!completed && dateToday <= quizOpenDate && (
+                <p className='list-date'>
+                  <em>Upcoming on {quizOpenDate.toDateString()}</em>
+                </p>
+              )}
               {completed && 'Completed'}
             </div>
           </div>
@@ -24,13 +31,20 @@ export const PollCard = ({ weekNumber, openDate, completed, profilePage }) => {
   }
 
   return (
-    <div className='poll-card'>
+    <div className='list-card'>
       <h4>{`Poll for Week # ${weekNumber}`}</h4>
-      <div className={completed ? 'completed' : ''}>
+      <div
+        style={{ marginTop: '2rem', marginBottom: '2rem' }}
+        className={completed ? 'completed' : ''}
+      >
         {!completed && dateToday > quizOpenDate && (
           <Link to={`/poll/${weekNumber}`}>Available</Link>
         )}
-        {!completed && dateToday <= quizOpenDate && 'Upcoming'}
+        {!completed && dateToday <= quizOpenDate && (
+          <p className='list-date'>
+            <em>Upcoming on {quizOpenDate.toDateString()}</em>
+          </p>
+        )}
         {completed && 'Completed'}
       </div>
     </div>

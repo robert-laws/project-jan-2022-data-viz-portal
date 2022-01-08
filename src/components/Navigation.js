@@ -17,10 +17,10 @@ export const Navigation = () => {
           </Link>
         </div>
         <nav className='app-navigation short-form'>
+          {user && <NavLink to='/profile'>Profile</NavLink>}
           <NavLink to='/knowledge-base'>Knowledge Base</NavLink>
           {!user && <NavLink to='/login'>Login</NavLink>}
           {!user && <NavLink to='/signup'>Signup</NavLink>}
-          {user && <NavLink to='/profile'>Profile</NavLink>}
           {user && <NavLink to='/dashboard'>Dashboard</NavLink>}
           {user && <NavLink to='/quiz'>Quizzes</NavLink>}
           {user && <NavLink to='/poll'>Polls</NavLink>}

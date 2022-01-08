@@ -14,7 +14,11 @@ export const PollCards = ({ completed, profilePage = false }) => {
   }, [clearQuestions]);
 
   if (completed.length === 0) {
-    return <p>Loading...</p>;
+    return (
+      <div className='centered'>
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   return pollSchedule.map((poll, index) => (

@@ -14,14 +14,18 @@ export const QuizCard = ({
     return (
       <>
         {!completed && dateToday > quizOpenDate && (
-          <div className='quiz-card'>
+          <div className='list-card'>
             <h4>{`Week # ${weekNumber}`}</h4>
-            <p>{topic}</p>
+            <p className='list-topic'>{topic}</p>
             <div className={completed ? 'completed' : ''}>
               {!completed && dateToday > quizOpenDate && (
                 <Link to={`/quiz/${weekNumber}`}>Available</Link>
               )}
-              {!completed && dateToday <= quizOpenDate && 'Upcoming'}
+              {!completed && dateToday <= quizOpenDate && (
+                <p>
+                  <em>Upcoming on {quizOpenDate.toDateString()}</em>
+                </p>
+              )}
               {completed && (
                 <Link
                   className='link-button'
@@ -38,14 +42,18 @@ export const QuizCard = ({
   }
 
   return (
-    <div className='quiz-card'>
+    <div className='list-card'>
       <h4>{`Week # ${weekNumber}`}</h4>
-      <p>{topic}</p>
+      <p className='list-topic'>{topic}</p>
       <div className={completed ? 'completed' : ''}>
         {!completed && dateToday > quizOpenDate && (
           <Link to={`/quiz/${weekNumber}`}>Available</Link>
         )}
-        {!completed && dateToday <= quizOpenDate && 'Upcoming'}
+        {!completed && dateToday <= quizOpenDate && (
+          <p>
+            <em>Upcoming on {quizOpenDate.toDateString()}</em>
+          </p>
+        )}
         {completed && (
           <Link className='link-button' to={`/quiz/results/${weekNumber}`}>
             {completed && 'View Results'}

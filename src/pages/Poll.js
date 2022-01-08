@@ -8,10 +8,12 @@ export const Poll = () => {
   const { weekNumber } = useParams();
 
   return (
-    <div>
+    <div className='app-content'>
       <h1>Polls</h1>
       {isProfileLoading && !profileError ? (
-        <p>Loading...</p>
+        <div className='centered'>
+          <p>Loading...</p>
+        </div>
       ) : weekNumber && user ? (
         <PollQuestionList
           weekNumber={weekNumber}
@@ -19,7 +21,9 @@ export const Poll = () => {
           profile={profile}
         />
       ) : (
-        <PollCards completed={profile.poll} />
+        <div className='list'>
+          <PollCards completed={profile.poll} />
+        </div>
       )}
       {profileError && <p>{profileError}</p>}
     </div>

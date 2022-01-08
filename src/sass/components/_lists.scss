@@ -1,0 +1,56 @@
+@use '../abstracts' as a;
+
+.list {
+  padding: 2rem 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+
+  @include a.lg {
+    justify-content: flex-start;
+  }
+
+  .list-card {
+    width: 372px;
+    padding: 1.5rem 2rem 0.5rem;
+    border: 1px solid a.$light-gray-color;
+    border-radius: a.$base-border-radius;
+    background-color: lighten(a.$light-gray-color, 17%);
+    box-shadow: a.$base-box-shadow;
+
+    .list-topic {
+      padding-bottom: 2rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid lighten(a.$light-gray-color, 10%);
+    }
+
+    .list-date {
+      padding-top: 1.25rem;
+      margin-top: 2rem;
+      border-top: 1px solid lighten(a.$light-gray-color, 10%);
+    }
+
+    h3,
+    h4 {
+      font-size: a.$font-size-normal-text * 1.1;
+    }
+
+    .completed {
+      @include a.button(a.$dark-primary-color);
+      @include a.link-button(a.$dark-primary-color);
+    }
+
+    .available {
+      @include a.button(a.$dark-secondary-color);
+      @include a.link-button(a.$dark-secondary-color);
+    }
+
+    @include a.link-button(a.$dark-primary-color);
+
+    .link-button {
+      margin: 0 0 1.2rem 0;
+    }
+  }
+}

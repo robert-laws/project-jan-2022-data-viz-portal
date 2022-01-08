@@ -70,11 +70,15 @@ export const PollQuestionList = ({ weekNumber, userId, profile }) => {
   };
 
   if (isQuestionsLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className='centered'>
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='app-form' onSubmit={handleSubmit}>
       <h2>Poll for Week {weekNumber}</h2>
       {questions.map((question, index) => (
         <PollQuestion
@@ -84,10 +88,12 @@ export const PollQuestionList = ({ weekNumber, userId, profile }) => {
           updateAnswers={handleAnswer}
         />
       ))}
-      {questionsError && <p>{questionsError}</p>}
-      <Button isLoading={isSubmitPending} styleClass='secondary'>
-        Submit Quiz
-      </Button>
+      <div className='form-submit'>
+        <Button isLoading={isSubmitPending} styleClass='secondary'>
+          Submit Quiz
+        </Button>
+        {questionsError && <p>{questionsError}</p>}
+      </div>
     </form>
   );
 };

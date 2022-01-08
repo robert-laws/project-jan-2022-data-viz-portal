@@ -1,10 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
 import { useCheckUser } from '../hooks/useCheckUser';
-import { useQuestionContext } from '../hooks/useQuestionContext';
+// import { useQuestionContext } from '../hooks/useQuestionContext';
 import { useBuildChartArray } from '../hooks/useBuildChartArray';
 import { BarChart, ColumnChart, LineChart } from '../components';
 
+const chartSelections = [
+  { value: 'column', label: 'Column Chart' },
+  { value: 'bar', label: 'Bar Chart' },
+  { value: 'line', label: 'Line Chart' },
+];
+
 export const Dashboard = () => {
+  const [chartSelection, setChartSelection] = useState('column');
+  const [scoreText, setScoreText] = useState('Loading');
   const { isProfileLoading } = useCheckUser();
 
   // useBuildChartArray()
@@ -16,34 +25,71 @@ export const Dashboard = () => {
     'Scores'
   );
 
-  const { polls, loadAllPolls, isPollsLoading, pollsError, clearPollsResults } =
-    useQuestionContext();
+  // const { polls, loadAllPolls, isPollsLoading, pollsError, clearPollsResults } =
+  //   useQuestionContext();
+
+  // useEffect(() => {
+  //   loadAllPolls();
+
+  //   return () => {
+  //     clearPollsResults();
+  //   };
+  // }, [loadAllPolls, clearPollsResults]);
+
+  const getScoreAverage = (scoreData) => {
+    let average = '';
+    if (scoreData && scoreData.length > 0) {
+      const quizzesTaken = scoreData.length - 1;
+      let score = 0;
+
+      for (let i = 1; i < scoreData.length; i++) {
+        score += scoreData[i][1];
+      }
+
+      const scoreAverage = score / quizzesTaken;
+      average = scoreAverage;
+    } else {
+      average = '0 Quizzes Taken';
+    }
+
+    return average;
+  };
 
   useEffect(() => {
-    loadAllPolls();
-
-    return () => {
-      clearPollsResults();
-    };
-  }, [loadAllPolls, clearPollsResults]);
+    const result = getScoreAverage(googleChartData);
+    setScoreText(result);
+  }, [googleChartData]);
 
   if (isProfileLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className='app-content'>
+        <div className='centered'>
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <h1>Charts</h1>
-      <h2>Polls</h2>
-      {isPollsLoading && !pollsError ? (
-        <p>Loading...</p>
-      ) : (
-        <div>{polls.length}</div>
-      )}
-      <h2>Quiz Results</h2>
-      <div>
-        <div>
-          {googleChartData && (
+    <div className='app-content'>
+      <h1>Your Data Dashboard</h1>
+      <div className='dashboard-quiz'>
+        <div className='quiz-tools'>
+          <h2>
+            You Quiz Average: <strong>{scoreText}</strong>
+          </h2>
+          <div className='quiz-select'>
+            <label>
+              <span>Change Quiz Scores Visualization Type</span>
+              <Select
+                options={chartSelections}
+                onChange={(option) => setChartSelection(option.value)}
+              />
+            </label>
+          </div>
+        </div>
+        {googleChartData && chartSelection === 'column' && (
+          <div className='quiz-chart'>
             <ColumnChart
               title='Quiz Results'
               chartData={googleChartData}
@@ -52,11 +98,11 @@ export const Dashboard = () => {
               loading={isResultsLoading}
               error={resultsError}
             />
-          )}
-        </div>
+          </div>
+        )}
 
-        <div>
-          {googleChartData && (
+        {googleChartData && chartSelection === 'bar' && (
+          <div className='quiz-chart'>
             <BarChart
               title='Quiz Results'
               chartData={googleChartData}
@@ -65,11 +111,11 @@ export const Dashboard = () => {
               loading={isResultsLoading}
               error={resultsError}
             />
-          )}
-        </div>
+          </div>
+        )}
 
-        <div>
-          {googleChartData && (
+        {googleChartData && chartSelection === 'line' && (
+          <div className='quiz-chart'>
             <LineChart
               title='Quiz Results'
               chartData={googleChartData}
@@ -78,9 +124,17 @@ export const Dashboard = () => {
               loading={isResultsLoading}
               error={resultsError}
             />
-          )}
-        </div>
+          </div>
+        )}
       </div>
+      {/* <div>
+        <h2>Polls</h2>
+        {isPollsLoading && !pollsError ? (
+          <p>Loading...</p>
+        ) : (
+          <div>{polls.length}</div>
+        )}
+      </div> */}
     </div>
   );
 };

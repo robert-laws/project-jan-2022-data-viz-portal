@@ -62,7 +62,7 @@ export const QuizQuestionList = ({ weekNumber, userId, profile }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='app-form' onSubmit={handleSubmit}>
       <h2>Quiz Questions for Week {weekNumber}</h2>
       {questions &&
         questions.map((question, index) => (
@@ -73,10 +73,12 @@ export const QuizQuestionList = ({ weekNumber, userId, profile }) => {
             updateAnswers={handleAnswer}
           />
         ))}
-      {questionsError && <p>{questionsError}</p>}
-      <Button isLoading={isSubmitPending} styleClass='secondary'>
-        Submit Quiz
-      </Button>
+      <div className='form-submit'>
+        <Button isLoading={isSubmitPending} styleClass='secondary'>
+          Submit Quiz
+        </Button>
+        {questionsError && <p>{questionsError}</p>}
+      </div>
     </form>
   );
 };
