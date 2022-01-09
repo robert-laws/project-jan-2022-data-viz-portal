@@ -123,7 +123,6 @@ const QuestionState = ({ children }) => {
             allResults.push({ id: doc.id, ...doc.data() });
           });
           dispatch({ type: LOAD_RESULTS, payload: allResults });
-          console.log('db query...');
         }
       } catch (error) {
         dispatch({
@@ -158,7 +157,6 @@ const QuestionState = ({ children }) => {
             allResults.push({ id: doc.id, ...doc.data() });
           });
           dispatch({ type: LOAD_RESULTS, payload: allResults });
-          console.log('db query...');
         }
       } catch (error) {
         dispatch({
