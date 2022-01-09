@@ -18,6 +18,11 @@
   .fields {
     display: flex;
     gap: 1.5rem;
+    flex-flow: column wrap;
+
+    @include a.md {
+      flex-flow: row wrap;
+    }
 
     & > label {
       flex: 1 1 auto;
