@@ -132,19 +132,18 @@
       font-size: 2rem;
     }
 
-    figure {
+    picture {
+      display: block;
+      max-width: 800px;
+      margin: 4rem auto 0;
       border: 1px solid lighten(a.$light-gray-color, 10%);
       border-radius: a.$base-border-radius;
       overflow: hidden;
-      max-width: 800px;
-      margin: 0 auto;
 
-      .image-right {
+      img {
         width: 100%;
-      }
-
-      .image-left {
-        width: 100%;
+        height: auto;
+        object-fit: cover;
       }
     }
   }

@@ -1,5 +1,7 @@
-import ImageOne from '../assets/images/data-viz-1.jpg';
-import ImageTwo from '../assets/images/data-viz-2.jpg';
+import ImageOneJPG from '../assets/images/data-viz-1.jpg';
+import ImageOneWEBP from '../assets/images/data-viz-1.webp';
+import ImageTwoJPG from '../assets/images/data-viz-2.jpg';
+import ImageTwoWEBP from '../assets/images/data-viz-2.webp';
 
 export const Home = () => {
   return (
@@ -14,13 +16,11 @@ export const Home = () => {
               gain insights into the data and to make attempt to discover
               meaning within the data.
             </p>
-            <figure>
-              <img
-                className='image-left'
-                src={ImageOne}
-                alt='Data Visualization'
-              />
-            </figure>
+            <picture>
+              <source srcSet={ImageOneWEBP} type='image/webp' />
+              <source srcSet={ImageOneJPG} type='image/jpeg' />
+              <img src={ImageOneJPG} alt='Data Visualization' />
+            </picture>
           </div>
           <div>
             <h3>Is Data Visualization just about lines, bars, and colors?</h3>
@@ -33,13 +33,11 @@ export const Home = () => {
               raw form. However, data visualization help to cut through this
               complexity and provide a means to gain insight into the data.
             </p>
-            <figure>
-              <img
-                className='image-right'
-                src={ImageTwo}
-                alt='Data Visualization'
-              />
-            </figure>
+            <picture>
+              <source srcSet={ImageTwoWEBP} type='image/webp' />
+              <source srcSet={ImageTwoJPG} type='image/jpeg' />
+              <img src={ImageTwoJPG} alt='Data Visualization' />
+            </picture>
           </div>
           <div>
             <h3>
