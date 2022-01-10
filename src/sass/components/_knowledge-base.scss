@@ -47,10 +47,39 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
-    gap: 1.2rem;
+    gap: 2rem 1.2rem;
 
     & > div {
       flex: 0 0 370px;
+    }
+
+    .video-placeholder {
+      cursor: pointer;
+      width: 370px;
+      height: 252px;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 26px 226px;
+
+      img {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+        transition: all 0.5s ease-out;
+
+        &:hover {
+          filter: brightness(0.6);
+        }
+      }
+
+      p {
+        color: a.$white-color;
+        font-weight: bold;
+        font-size: a.$font-size-normal-text * 1.025;
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        text-align: center;
+        z-index: 2;
+      }
     }
   }
 }
