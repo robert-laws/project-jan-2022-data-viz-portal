@@ -193,20 +193,25 @@ export const quizData = [
   {
     category: 'quiz',
     questionText:
-      'Which visualization is best to show comparisons between two variables?',
+      'To create a scatter plot what is the minimum amount of information needed?',
     questionNumber: 1,
     weekNumber: 3,
-    answers: ['line chart', 'scatter plot', 'heatmap', 'pie chart'],
-    correctAnswer: 'scatter plot',
+    answers: [
+      'two numerical data points',
+      'one categorical and one numeric data point',
+      'multiple categorical data points',
+      'random data',
+    ],
+    correctAnswer: 'two numerical data points',
   },
   {
     category: 'quiz',
     questionText:
-      'Which visualization is best to show comparisons between two variables?',
+      'Can a scatter plot be used to establish correlation between two different data points?',
     questionNumber: 2,
     weekNumber: 3,
-    answers: ['line chart', 'scatter plot', 'heatmap', 'pie chart'],
-    correctAnswer: 'scatter plot',
+    answers: ['true', 'false'],
+    correctAnswer: 'true',
   },
   {
     category: 'quiz',
@@ -228,12 +233,16 @@ export const quizData = [
   },
   {
     category: 'quiz',
-    questionText:
-      'Which visualization is best to show comparisons between two variables?',
+    questionText: 'What is the purpose of data analytics?',
     questionNumber: 5,
     weekNumber: 3,
-    answers: ['line chart', 'scatter plot', 'heatmap', 'pie chart'],
-    correctAnswer: 'scatter plot',
+    answers: [
+      'To use data to make an image file',
+      'To determine the sum of all values',
+      'To use data for the purpose of analysis',
+      'to analyze a news article',
+    ],
+    correctAnswer: 'To use data for the purpose of analysis',
   },
   {
     category: 'quiz',
@@ -265,11 +274,16 @@ export const quizData = [
   {
     category: 'quiz',
     questionText:
-      'Which visualization is best to show comparisons between two variables?',
+      'Which data visualization is most appropriate for data and time values?',
     questionNumber: 9,
     weekNumber: 3,
-    answers: ['line chart', 'scatter plot', 'heatmap', 'pie chart'],
-    correctAnswer: 'scatter plot',
+    answers: [
+      'geographic map',
+      'line chart',
+      'multi-set column chart',
+      'pie chart',
+    ],
+    correctAnswer: 'line chart',
   },
   {
     category: 'quiz',

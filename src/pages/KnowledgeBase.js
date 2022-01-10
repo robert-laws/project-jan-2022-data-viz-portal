@@ -9,7 +9,7 @@ import {
 export const KnowledgeBase = () => {
   const [tabSelected, setTabSelected] = useState(1);
   return (
-    <main className='section-app-content'>
+    <main id='main-content' className='section-app-content'>
       <div className='app-content'>
         <h2>Knowledge Base</h2>
         <div className='tab-buttons'>

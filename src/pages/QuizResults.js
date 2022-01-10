@@ -50,7 +50,7 @@ export const QuizResults = () => {
   }, [clearResults, clearQuestions]);
 
   return (
-    <main className='section-app-content'>
+    <main id='main-content' className='section-app-content'>
       <div className='app-content'>
         <h2>Quiz Results for Week {weekNumber}</h2>
         <h2 className='quiz-score'>Your Quiz Score {quizScore}/10</h2>

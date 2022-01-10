@@ -23,7 +23,7 @@ export const Profile = () => {
   const { user, profile, isProfileLoading, profileError } = useCheckUser();
 
   return (
-    <main className='section-app-content'>
+    <main id='main-content' className='section-app-content'>
       <div className='app-content'>
         {isProfileLoading && !profileError ? (
           <div className='centered'>

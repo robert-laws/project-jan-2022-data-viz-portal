@@ -8,7 +8,7 @@ export const Poll = () => {
   const { weekNumber } = useParams();
 
   return (
-    <main className='section-app-content'>
+    <main id='main-content' className='section-app-content'>
       <div className='app-content'>
         <h2>Polls</h2>
         {isProfileLoading && !profileError ? (

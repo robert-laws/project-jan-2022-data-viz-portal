@@ -21,7 +21,7 @@ export const Login = () => {
   }, [clearProfile]);
 
   return (
-    <section className='section-app-form'>
+    <section id='main-content' className='section-app-form'>
       <form className='app-form' onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className='form-fields'>

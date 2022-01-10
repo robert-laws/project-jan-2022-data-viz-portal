@@ -34,7 +34,7 @@ export const AddData = () => {
   };
 
   return (
-    <main className='section-app-content'>
+    <main id='main-content' className='section-app-content'>
       <div className='app-content'>
         <h2>Add Data</h2>
         {status.quizzes ? 'Quizzes added' : 'Quizzes in process...'}

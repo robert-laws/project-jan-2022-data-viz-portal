@@ -5,7 +5,7 @@ import ImageTwoWEBP from '../assets/images/data-viz-2.webp';
 
 export const Home = () => {
   return (
-    <main className='section-app-content'>
+    <main id='main-content' className='section-app-content'>
       <div className='app-content'>
         <div className='home-content'>
           <div>

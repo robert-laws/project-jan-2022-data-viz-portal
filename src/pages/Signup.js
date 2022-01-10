@@ -56,7 +56,7 @@ export const Signup = () => {
   };
 
   return (
-    <section className='section-app-form'>
+    <section id='main-content' className='section-app-form'>
       <form className='app-form' onSubmit={handleSubmit}>
         <h2>Signup</h2>
         <div className='form-fields'>

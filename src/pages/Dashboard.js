@@ -80,7 +80,7 @@ export const Dashboard = () => {
   }
 
   return (
-    <main className='section-app-content'>
+    <main id='main-content' className='section-app-content'>
       <div className='app-content'>
         <h2>Your Data Dashboard</h2>
         <div className='dashboard-quiz'>
