@@ -40,7 +40,11 @@ header {
         }
 
         h1 {
-          font-size: 2.6rem;
+          font-size: 2.8rem;
+
+          @include a.md {
+            font-size: 2.6rem;
+          }
         }
 
         img {
@@ -68,7 +72,11 @@ header {
       @include a.button(a.$dark-secondary-color, a.$dark-primary-color);
 
       a {
-        font-size: a.$font-size-normal-text * 1.1;
+        font-size: a.$font-size-normal-text * 1.4;
+
+        @include a.md {
+          font-size: a.$font-size-normal-text * 1.1;
+        }
       }
     }
   }

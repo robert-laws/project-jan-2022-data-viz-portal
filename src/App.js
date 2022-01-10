@@ -18,45 +18,55 @@ function App() {
   const { user, authIsReady } = useAuthContext();
 
   return (
-    <div className='app'>
-      {authIsReady && (
-        <Router>
-          <Navigation />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/knowledge-base' element={<KnowledgeBase />} />
-            <Route path='/poll' element={<Poll />}>
-              <Route path=':weekNumber' element={<Poll />} />
-            </Route>
-            <Route path='/quiz' element={<Quiz />}>
-              <Route path=':weekNumber' element={<Quiz />} />
-            </Route>
-            <Route path='/quiz/results/:weekNumber' element={<QuizResults />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            {/* <Route path='/add' element={<AddData />} /> */}
-            <Route
-              path='/login'
-              element={
-                <PrivateRoute user={user}>
-                  <Login />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path='/signup'
-              element={
-                <PrivateRoute user={user}>
-                  <Signup />
-                </PrivateRoute>
-              }
-            />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </Router>
-      )}
-    </div>
+    <>
+      <a id='skip-link' href='#main-content'>
+        Skip to content.
+      </a>
+      <div className='app'>
+        {authIsReady && (
+          <Router>
+            <Navigation />
+            <div id='main-content'>
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/knowledge-base' element={<KnowledgeBase />} />
+                <Route path='/poll' element={<Poll />}>
+                  <Route path=':weekNumber' element={<Poll />} />
+                </Route>
+                <Route path='/quiz' element={<Quiz />}>
+                  <Route path=':weekNumber' element={<Quiz />} />
+                </Route>
+                <Route
+                  path='/quiz/results/:weekNumber'
+                  element={<QuizResults />}
+                />
+                <Route path='/dashboard' element={<Dashboard />} />
+                {/* <Route path='/add' element={<AddData />} /> */}
+                <Route
+                  path='/login'
+                  element={
+                    <PrivateRoute user={user}>
+                      <Login />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path='/signup'
+                  element={
+                    <PrivateRoute user={user}>
+                      <Signup />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path='*' element={<NotFound />} />
+              </Routes>
+            </div>
+            <Footer />
+          </Router>
+        )}
+      </div>
+    </>
   );
 }
 

@@ -25,6 +25,20 @@ p {
   margin: 1.6rem 0;
 }
 
+#skip-link {
+  position: absolute;
+  top: -9999px;
+  color: a.$white-color;
+  background-color: a.$dark-secondary-color;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+}
+
+#skip-link:focus {
+  position: relative;
+  top: 0;
+}
+
 .app {
   display: flex;
   flex-direction: column;
