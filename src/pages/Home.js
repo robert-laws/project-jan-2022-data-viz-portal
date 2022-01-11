@@ -9,7 +9,7 @@ export const Home = () => {
       <div className='app-content'>
         <div className='home-content'>
           <div>
-            <h3>What is Data Visualization and What can I do with it?</h3>
+            <h2>What is Data Visualization and What can I do with it?</h2>
             <p>
               Data visualization is the process of transforming data into a
               visual representation. Using this transformation, it's possible to
@@ -23,7 +23,7 @@ export const Home = () => {
             </picture>
           </div>
           <div>
-            <h3>Is Data Visualization just about lines, bars, and colors?</h3>
+            <h2>Is Data Visualization just about lines, bars, and colors?</h2>
             <p>
               Not at all, in fact, data visualization is a key tool within the
               field of data analytics. It's a vital part of the process of
@@ -40,10 +40,10 @@ export const Home = () => {
             </picture>
           </div>
           <div>
-            <h3>
+            <h2>
               How will this website help me to learn more about Data
               Visualization?
-            </h3>
+            </h2>
             <p>
               By signing up for an account, you will be able to access polls,
               quizzes, and a dashboard to view your progress with the related

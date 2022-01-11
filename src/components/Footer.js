@@ -2,7 +2,9 @@ export const Footer = () => {
   return (
     <footer>
       <div className='app-footer'>
-        <h4>© 2022 - Data Viz Portal</h4>
+        <p>
+          <strong>© 2022 - Data Viz Portal</strong>
+        </p>
       </div>
     </footer>
   );
