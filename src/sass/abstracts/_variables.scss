@@ -1,8 +1,9 @@
 // site color theme
-$dark-primary-color: #389994;
+$dark-primary-color: darken(#389994, 8%);
 $dark-secondary-color: #27538c;
 $dark-tertiary-color: #496d8c;
 $dark-alt-color: #f16d15;
+$navigation-active-color: darken(#995738, 8%);
 
 $light-primary-color: #f2edd5;
 $light-secondary-color: #c6d8e2;

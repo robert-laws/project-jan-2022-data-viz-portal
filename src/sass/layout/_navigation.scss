@@ -21,7 +21,11 @@ header {
     }
 
     .branding {
-      @include a.link(a.$dark-secondary-color, a.$dark-primary-color);
+      @include a.link(
+        a.$dark-secondary-color,
+        a.$dark-alt-color,
+        a.$dark-alt-color
+      );
       flex: 1 1 auto;
 
       @include a.md {
@@ -67,7 +71,11 @@ header {
         flex-flow: row wrap;
       }
 
-      @include a.link(a.$dark-secondary-color, a.$dark-primary-color);
+      @include a.link(
+        a.$dark-secondary-color,
+        a.$dark-alt-color,
+        a.$dark-alt-color
+      );
 
       @include a.button(a.$dark-secondary-color, a.$dark-primary-color);
 
