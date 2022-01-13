@@ -25,6 +25,7 @@ export { PollQuestion } from './PollQuestion';
 export { ColumnChart } from './ColumnChart';
 export { BarChart } from './BarChart';
 export { LineChart } from './LineChart';
+export { MultiSetBarChart } from './MultiSetBarChart';
 
 // Knowledge Base
 export { UsefulResources } from './UsefulResources';

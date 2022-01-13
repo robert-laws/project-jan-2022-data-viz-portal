@@ -11,6 +11,7 @@ import {
   QuizResults,
   Signup,
   Dashboard,
+  PollCharts,
 } from './pages';
 import { useAuthContext } from './hooks/useAuthContext';
 
@@ -41,6 +42,7 @@ function App() {
                 element={<QuizResults />}
               />
               <Route path='/dashboard' element={<Dashboard />} />
+              <Route path='/poll-charts' element={<PollCharts />} />
               {/* <Route path='/add' element={<AddData />} /> */}
               <Route
                 path='/login'
