@@ -136,7 +136,7 @@ export const PollCharts = ({ rawPollsData, pollsError }) => {
           chartData={questionOneByClassChartData}
           loading={loading}
           error={pollsError}
-          title='Favorite Colors'
+          title='Poll Question: What is your favorite color?'
           hAxisTitle='Number of Students'
           vAxisTitle='Class'
         />
@@ -146,7 +146,7 @@ export const PollCharts = ({ rawPollsData, pollsError }) => {
           chartData={questionTwoByMajorChartData}
           loading={loading}
           error={pollsError}
-          title='Library Study Times'
+          title='Poll Question: Do you use the library to study?'
           hAxisTitle='Number of Students'
           vAxisTitle='Major'
         />

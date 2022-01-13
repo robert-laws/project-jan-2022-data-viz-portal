@@ -146,7 +146,7 @@ export const Dashboard = () => {
           )}
         </div>
         <div class='dashboard-quiz dashboard-polls'>
-          <h2>Polls</h2>
+          <h2>Polls for Week 1</h2>
           {isPollsLoading && !pollsError ? (
             <div className='centered'>
               <Spinner />
