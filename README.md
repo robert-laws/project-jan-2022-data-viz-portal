@@ -17,3 +17,5 @@ The solution to this challenge is a website that combines resources with a place
 #### Technologies Used
 
 The project made use of React for development of the user interface and incorporated supporting technologies such as React Router and React Google Charts. Data was stored in a Firestore database, which makes use of the Firebase service and SDK. The website also takes advantage of the Firebase authentication and hosting services. The development of the project website made use of Sass to organize and automate the styling for the website.
+
+## Design
