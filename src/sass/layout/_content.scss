@@ -17,7 +17,7 @@
 
     h2 {
       font-weight: bold;
-      font-size: 2rem;
+      font-size: 2.6rem;
       border-bottom: 1px solid lighten(a.$light-gray-color, 10%);
       padding-bottom: 2rem;
       margin-bottom: 2rem;
@@ -96,6 +96,18 @@
       h3 {
         font-size: 1.6rem;
       }
+    }
+  }
+
+  .dashboard-polls {
+    margin: 16rem 0 12rem;
+    height: 900px;
+
+    h2 {
+      font-weight: bold;
+      font-size: 2rem;
+      border-top: 1px solid lighten(a.$light-gray-color, 10%);
+      padding-top: 2rem;
     }
   }
 

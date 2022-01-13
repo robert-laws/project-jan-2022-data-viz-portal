@@ -3,7 +3,13 @@ import Select from 'react-select';
 import { useCheckUser } from '../hooks/useCheckUser';
 import { useQuestionContext } from '../hooks/useQuestionContext';
 import { useBuildChartArray } from '../hooks/useBuildChartArray';
-import { BarChart, ColumnChart, LineChart, Spinner } from '../components';
+import {
+  BarChart,
+  ColumnChart,
+  LineChart,
+  Spinner,
+  PollCharts,
+} from '../components';
 
 const chartSelections = [
   { value: 'column', label: 'Column Chart' },
@@ -15,13 +21,28 @@ export const Dashboard = () => {
   const [chartSelection, setChartSelection] = useState('column');
   const [scoreText, setScoreText] = useState('Loading');
   const { user, isProfileLoading } = useCheckUser();
-  const { loadResults } = useQuestionContext();
+  const {
+    loadResults,
+    polls,
+    loadAllPolls,
+    isPollsLoading,
+    pollsError,
+    clearPollsResults,
+  } = useQuestionContext();
 
   useEffect(() => {
     if (user) {
       loadResults(user.uid);
     }
   }, [user, loadResults]);
+
+  useEffect(() => {
+    loadAllPolls();
+
+    return () => {
+      clearPollsResults();
+    };
+  }, [loadAllPolls, clearPollsResults]);
 
   // useBuildChartArray()
   // depends on state in QuestionContext for 'results', which is loaded by useCheckUser()
@@ -31,17 +52,6 @@ export const Dashboard = () => {
     'Weeks',
     'Scores'
   );
-
-  // const { polls, loadAllPolls, isPollsLoading, pollsError, clearPollsResults } =
-  //   useQuestionContext();
-
-  // useEffect(() => {
-  //   loadAllPolls();
-
-  //   return () => {
-  //     clearPollsResults();
-  //   };
-  // }, [loadAllPolls, clearPollsResults]);
 
   const getScoreAverage = (scoreData) => {
     let average = '';
@@ -135,14 +145,16 @@ export const Dashboard = () => {
             </div>
           )}
         </div>
-        {/* <div>
-        <h2>Polls</h2>
-        {isPollsLoading && !pollsError ? (
-          <Spinner />
-        ) : (
-          <div>{polls.length}</div>
-        )}
-      </div> */}
+        <div class='dashboard-quiz dashboard-polls'>
+          <h2>Polls</h2>
+          {isPollsLoading && !pollsError ? (
+            <div className='centered'>
+              <Spinner />
+            </div>
+          ) : (
+            <PollCharts rawPollsData={polls} pollsError={pollsError} />
+          )}
+        </div>
       </div>
     </main>
   );

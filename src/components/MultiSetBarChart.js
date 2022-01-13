@@ -6,6 +6,7 @@ export const MultiSetBarChart = ({
   hAxisTitle,
   vAxisTitle,
   chartData,
+  error,
   loading,
 }) => {
   const options = {
@@ -31,13 +32,13 @@ export const MultiSetBarChart = ({
     );
   }
 
-  // if (error) {
-  //   return (
-  //     <div className='centered'>
-  //       <p>No Data to Display</p>
-  //     </div>
-  //   );
-  // }
+  if (error) {
+    return (
+      <div className='centered'>
+        <p>No Data to Display</p>
+      </div>
+    );
+  }
 
   if (!loading && chartData) {
     return (
@@ -45,7 +46,7 @@ export const MultiSetBarChart = ({
         <h3>{title}</h3>
         <Chart
           chartType='BarChart'
-          width='1000px'
+          width='99%'
           height='400px'
           data={chartData}
           options={options}

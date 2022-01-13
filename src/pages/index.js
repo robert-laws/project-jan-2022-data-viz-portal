@@ -11,6 +11,3 @@ export { Dashboard } from './Dashboard';
 
 // utility to add data to firestore
 export { AddData } from './AddData';
-
-// testing PollCharts
-export { PollCharts } from './PollCharts';
