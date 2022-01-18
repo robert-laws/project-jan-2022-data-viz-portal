@@ -29,44 +29,62 @@ export const pollData = [
   },
   {
     category: 'poll',
-    questionText: 'Do you drink coffee?',
+    questionText:
+      'On a scale of 1 to 10, how would you rate your writing skills? (1 being poor, 10 being excellent)',
     questionNumber: 1,
     weekNumber: 3,
-    answers: ['all the time', 'sometimes', 'rarely', 'never'],
+    answers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
   },
   {
     category: 'poll',
-    questionText: 'Do you prefer a final exam or a final paper?',
+    questionText:
+      'On a scale of 1 to 10, how would you rate your mathematical skills? (1 being poor, 10 being excellent)',
     questionNumber: 2,
     weekNumber: 3,
-    answers: ['final exam', 'final paper'],
+    answers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
   },
   {
     category: 'poll',
-    questionText: 'Do you prefer morning or afternoon classes?',
+    questionText:
+      'Which country in Europe do you most want to visit for a holiday?',
     questionNumber: 1,
     weekNumber: 4,
-    answers: ['morning', 'afternoon'],
+    answers: ['Spain', 'France', 'Germany', 'Italy', 'United Kingdom'],
   },
   {
     category: 'poll',
-    questionText: 'Have you been to the Qatar National Museum?',
+    questionText: 'What activity do you enjoy most when on holiday?',
     questionNumber: 2,
     weekNumber: 4,
-    answers: ['yes', 'no'],
+    answers: [
+      'shopping',
+      'sight seeing',
+      'eating and drinking',
+      'meeting new people',
+      'staying in the hotel',
+    ],
   },
   {
     category: 'poll',
-    questionText: 'Have you used the writing center?',
+    questionText:
+      'After this class, will you use data visualizations more or less in your other classes?',
     questionNumber: 1,
     weekNumber: 5,
-    answers: ['yes', 'no'],
+    answers: ['more', 'less'],
   },
   {
     category: 'poll',
     questionText: 'What is your favorite type of data visualization?',
     questionNumber: 2,
     weekNumber: 5,
-    answers: ['column chart', 'pie chart', 'scatter plot', 'geographic'],
+    answers: [
+      'column/bar chart',
+      'pie chart',
+      'scatter plot',
+      'geographic (choropleth)',
+      'line chart',
+      'highlight table',
+      'other',
+    ],
   },
 ];

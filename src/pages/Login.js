@@ -27,7 +27,7 @@ export const Login = () => {
         <div className='form-fields'>
           <div className='fields'>
             <label>
-              <span>email</span>
+              <span>Email</span>
               <input
                 required
                 type='email'
@@ -39,7 +39,7 @@ export const Login = () => {
           </div>
           <div className='fields'>
             <label>
-              <span>password</span>
+              <span>Password</span>
               <input
                 required
                 minLength={6}
